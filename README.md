@@ -14,7 +14,7 @@ Point of Sale (POS) devices provide you three choices typically for receipts: em
 Replace the personal email used with those POS with a Receipt Tracker email and send receipts there for storage, classification and reuse for returns when and if needed.
 
 ### Description
-
+Application leverages AWS services to capture the receipts and retreve the receipts. Application provides a flat interface to signup, review receipts, modify and or delete account.
 
 ### Order of Operations
 1.User registers for account with app
@@ -43,3 +43,4 @@ Replace the personal email used with those POS with a Receipt Tracker email and 
 ## Completed ERD and Table Join ![Screenshot](/ERD/receiptTrackerErd.png)
 
 ### Setup
+TODO
