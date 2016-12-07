@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceiptTracker", "ReceiptTracker\ReceiptTracker.csproj", "{01C268AB-CA81-492A-8702-CF6140C5C7B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceiptTracker.Tests", "ReceiptTracker.Tests\ReceiptTracker.Tests.csproj", "{54EC0A9C-12DC-4261-97CD-6F8E22C29056}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01C268AB-CA81-492A-8702-CF6140C5C7B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01C268AB-CA81-492A-8702-CF6140C5C7B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01C268AB-CA81-492A-8702-CF6140C5C7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01C268AB-CA81-492A-8702-CF6140C5C7B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54EC0A9C-12DC-4261-97CD-6F8E22C29056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54EC0A9C-12DC-4261-97CD-6F8E22C29056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54EC0A9C-12DC-4261-97CD-6F8E22C29056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54EC0A9C-12DC-4261-97CD-6F8E22C29056}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
