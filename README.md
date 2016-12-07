@@ -33,14 +33,18 @@ Application leverages AWS services to capture the receipts and retreve the recei
 
 ### Wireframes 
 
-###Login Register ![Screenshot](/Mockups/RegisterLoginMockUp.PNG)
+###Login Register
+![Screenshot](/Mockups/RegisterLoginMockUp.PNG)
 
-###Application in Use ![Screenshot](/Mockups/ReceiptViewMockup.PNG)
+###Application in Use 
+![Screenshot](/Mockups/ReceiptViewMockup.PNG)
 
-###Account Modify ![Screenshot](/Mockups/AccountEditMockup.PNG)
+###Account Modify
+![Screenshot](/Mockups/AccountEditMockup.PNG)
 
 
-## Completed ERD and Table Join ![Screenshot](/ERD/receiptTrackerErd.png)
+## Completed ERD and Table Join
+![Screenshot](/ERD/receiptTrackerErd.png)
 
 ### Setup
 TODO
