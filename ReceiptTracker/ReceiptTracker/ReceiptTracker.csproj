@@ -204,13 +204,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ApplicationRole.cs" />
-    <Compile Include="Models\ApplicationUserLogin.cs" />
-    <Compile Include="Models\ApplicationUserRole.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\ReceiptTrackerUserModel.cs" />
-    <Compile Include="Models\ReceiptTrackerModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\ReceiptModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

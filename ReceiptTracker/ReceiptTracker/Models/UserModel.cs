@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ReceiptTracker.Models
 {
-    public class ReceiptTrackerUserModel 
+    public class UserModel 
     {
         public class User
         {

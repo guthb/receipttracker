@@ -9,8 +9,8 @@ namespace ReceiptTracker.DAL
 {
     public class ReceiptContext : ApplicationDbContext
     {
-        public virtual DbSet<ReceiptTrackerModel> Receipts { get; set; }
-        public virtual DbSet<ReceiptTrackerUserModel> ReceiptUsers { get; set; }
+        public virtual DbSet<ReceiptModel> Receipts { get; set; }
+        public virtual DbSet<UserModel> ReceiptUsers { get; set; }
         
     }
 }

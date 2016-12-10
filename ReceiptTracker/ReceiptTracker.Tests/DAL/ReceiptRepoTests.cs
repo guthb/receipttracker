@@ -14,16 +14,15 @@ namespace ReceiptTracker.Tests.DAL
     [TestClass]
     public class ReceiptRepoTests
     {
-
-        private Mock<DbSet<ReceiptTrackerUserModel>> mock_users { get; set; }
-        private Mock<DbSet<ReceiptTrackerModel>> mock_receipts { get; set; }
+        private Mock<DbSet<UserModel>> mock_users { get; set; }
+        private Mock<DbSet<ReceiptModel>> mock_receipts { get; set; }
         
         private Mock<DbSet<ApplicationUser>> mock_app_users { get; set; }
         private Mock<ReceiptContext> mock_context { get; set; }
         private ReceiptRepository Repo { get; set; }
 
-        private List<ReceiptTrackerUserModel> users { get; set; }
-        private List<ReceiptTrackerModel> receipts { get; set; }
+        private List<UserModel> users { get; set; }
+        private List<ReceiptModel> receipts { get; set; }
 
         private Mock<UserManager<ApplicationUser>> mock_user_manager_context { get; set; }
         private List<ApplicationUser> app_users { get; set; }
@@ -32,15 +31,17 @@ namespace ReceiptTracker.Tests.DAL
         public void Initialize()
         {
             mock_context = new Mock<ReceiptContext>();
-            mock_users = new Mock<DbSet<ReceiptTrackerUserModel>>();
-            mock_receipts = new Mock<DbSet<ReceiptTrackerModel>>();
+            mock_users = new Mock<DbSet<UserModel>>();
+            mock_receipts = new Mock<DbSet<ReceiptModel>>();
             mock_app_users = new Mock<DbSet<ApplicationUser>>();
             mock_user_manager_context = new Mock<UserManager<ApplicationUser>>();
             Repo = new ReceiptRepository(mock_context.Object);
 
-            receipts = new List<ReceiptTrackerModel>();
-            ApplicationUser yeldarba = new ApplicationUser { Email = "yeldarba@test.com", UserName = "yeldarba@guthb.com", Id = "000001" };
-            ApplicationUser yeldarbb = new ApplicationUser { Email = "yeldarbb@test.com", UserName = "yeldarbb@guthb.com", Id = "000002" };
+            receipts = new List<ReceiptModel>();
+
+            ApplicationUser yeldarba = new ApplicationUser { Email = "yeldarba@test.com", UserName = "yeldarba", Id = "000001" };
+
+            ApplicationUser yeldarbb = new ApplicationUser { Email = "yeldarbb@test.com", UserName = "yeldarbb", Id = "000002" };
 
             app_users = new List<ApplicationUser>()
             {
@@ -48,29 +49,130 @@ namespace ReceiptTracker.Tests.DAL
                 yeldarbb
             };
 
-            users = new List<ReceiptTrackerUserModel>
+            users = new List<UserModel>
             {
-                new User {
-                    UserId = 1,
-                    ReceiptUser = yeldarba
-                }
+               //not sure how to add users
+               new UserModel {
+                   //UserId = 1,
+                   //ReceiptUser = yeldarba
+               },
+
+                new UserModel {
+                    //UserId = 1,
+                    //ReceiptUser = yeldarbb
+               }
+
             };
 
+        } 
 
 
+        public void ConnectToDataStore()
+        {
+            var query_users = users.AsQueryable();
+            
+            mock_users.As<IQueryable<UserModel>>().Setup(m => m.Provider).Returns(query_users.Provider);
+            mock_users.As<IQueryable<UserModel>>().Setup(m => m.Expression).Returns(query_users.Expression);
+            mock_users.As<IQueryable<UserModel>>().Setup(m => m.ElementType).Returns(query_users.ElementType);
+            mock_users.As<IQueryable<UserModel>>().Setup(m => m.GetEnumerator()).Returns(() => query_users.GetEnumerator());
+
+            mock_context.Setup(c => c.ReceiptUsers).Returns(mock_users.Object);
+            mock_users.Setup(u => u.Add(It.IsAny<UserModel>())).Callback((UserModel t) => users.Add(t));
+            mock_users.Setup(u => u.Remove(It.IsAny<UserModel>())).Callback((UserModel t) => users.Remove(t));
+
+            var query_app_users = app_users.AsQueryable();
+
+            mock_app_users.As<IQueryable<ApplicationUser>>().Setup(m => m.Provider).Returns(query_app_users.Provider);
+            mock_app_users.As<IQueryable<ApplicationUser>>().Setup(m => m.Expression).Returns(query_app_users.Expression);
+            mock_app_users.As<IQueryable<ApplicationUser>>().Setup(m => m.ElementType).Returns(query_app_users.ElementType);
+            mock_app_users.As<IQueryable<ApplicationUser>>().Setup(m => m.GetEnumerator()).Returns(() => query_app_users.GetEnumerator());
+
+            mock_context.Setup(c => c.Users).Returns(mock_app_users.Object);
+          
+
+
+            var query_receipts = receipts.AsQueryable();
+
+            mock_receipts.As<IQueryable<ReceiptModel>>().Setup(m => m.Provider).Returns(query_receipts.Provider);
+            mock_receipts.As<IQueryable<ReceiptModel>>().Setup(m => m.Expression).Returns(query_receipts.Expression);
+            mock_receipts.As<IQueryable<ReceiptModel>>().Setup(m => m.ElementType).Returns(query_receipts.ElementType);
+            mock_receipts.As<IQueryable<ReceiptModel>>().Setup(m => m.GetEnumerator()).Returns(() => query_receipts.GetEnumerator());
+
+            mock_context.Setup(c => c.Receipts).Returns(mock_receipts.Object);
+            mock_receipts.Setup(u => u.Add(It.IsAny<ReceiptModel>())).Callback((ReceiptModel t) => receipts.Add(t));
+            mock_receipts.Setup(u => u.Remove(It.IsAny<ReceiptModel>())).Callback((ReceiptModel t) => receipts.Remove(t));
+
+            
         }
-
-
-
-
-
-
-
 
         [TestMethod]
-        public void TestMethod1()
+        public void RepoEnsureCanCreateInstance()
+        {
+            // arrange
+
+            // act
+            ReceiptRepository repo = new ReceiptRepository();
+
+            // assert
+            Assert.IsNotNull(repo);
+        }
+
+        [TestMethod]
+        public void RepoEnsureICanGetUserNames()
         {
 
+            // arrange
+
+            // act
+
+            // assert
+
         }
+
+        [TestMethod]
+        public void RepoEnsureUserNameExists()
+        {
+
+            // arrange
+
+            // act
+
+            // assert
+        }
+
+        [TestMethod]
+        public void RepoEnsureUserExistsOfUserName()
+        {
+
+            // arrange
+
+            // act
+
+            // assert
+        }
+
+        [TestMethod]
+        public void RepoEnsureICanCreateaReceipt()
+        {
+
+            // arrange
+
+            // act
+
+            // assert
+        }
+
+        [TestMethod]
+        public void RepoEnsureICanCreateReciptwithData()
+        {
+
+            // arrange
+
+            // act
+
+            // assert
+
+        }
+
     }
 }
