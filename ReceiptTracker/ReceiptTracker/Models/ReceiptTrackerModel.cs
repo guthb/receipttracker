@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ReceiptTracker.Models
 {
-    public class ReceiptTrackerViewModel
+    public class ReceiptTrackerModel
     {
         [Key]
         public int ReceiptCapturedId { get; set; }
