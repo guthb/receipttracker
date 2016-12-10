@@ -20,6 +20,9 @@ namespace ReceiptTracker.DAL
             Context = _context;
         }
 
-
+        public List<string> GetUserNames()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

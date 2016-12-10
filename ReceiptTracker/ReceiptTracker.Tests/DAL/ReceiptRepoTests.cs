@@ -122,10 +122,13 @@ namespace ReceiptTracker.Tests.DAL
         {
 
             // arrange
+            ConnectToDataStore();
 
             // act
+            List<string> usernames = Repo.GetUserNames();
 
             // assert
+            Assert.AreEqual(2, usernames.Count);
 
         }
 
