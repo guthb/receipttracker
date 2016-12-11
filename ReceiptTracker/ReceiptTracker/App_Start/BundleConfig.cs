@@ -27,9 +27,9 @@ namespace ReceiptTracker
                       "~/Scripts/angular.js",
                       "~/Scripts/app.js"));
 
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.min.css",
                       "~/Content/site.css"));
         }
     }

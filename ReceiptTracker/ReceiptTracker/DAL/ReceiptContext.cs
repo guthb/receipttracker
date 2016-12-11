@@ -7,7 +7,7 @@ using ReceiptTracker.Models;
 
 namespace ReceiptTracker.DAL
 {
-    public class ReceiptContext : DbContext //ApplicationDbContext
+    public class ReceiptContext : ApplicationDbContext //DbContext
     {
         public virtual DbSet<ReceiptModel> Receipts { get; set; }
         public virtual DbSet<UserModel> ReceiptUsers { get; set; }      
