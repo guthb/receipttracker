@@ -87,7 +87,7 @@ namespace ReceiptTracker.Tests.DAL
             mock_app_users.As<IQueryable<ApplicationUser>>().Setup(m => m.ElementType).Returns(query_app_users.ElementType);
             mock_app_users.As<IQueryable<ApplicationUser>>().Setup(m => m.GetEnumerator()).Returns(() => query_app_users.GetEnumerator());
 
-            mock_context.Setup(c => c.Users).Returns(mock_app_users.Object);
+            //mock_context.Setup(c => c.Users).Returns(mock_app_users.Object);
           
 
 
