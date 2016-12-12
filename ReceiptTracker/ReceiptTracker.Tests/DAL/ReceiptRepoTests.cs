@@ -144,7 +144,7 @@ namespace ReceiptTracker.Tests.DAL
         }
 
         [TestMethod]
-        public void RepoEnsureUserExistsOfUserName()
+        public void RepoEnsureUserExistsOfSpecificUserName()
         {
 
             // arrange
@@ -155,9 +155,8 @@ namespace ReceiptTracker.Tests.DAL
         }
 
         [TestMethod]
-        public void RepoEnsureICanCreateaReceipt()
+        public void RepoEnsureUserCanBeRemoved()
         {
-
             // arrange
 
             // act
@@ -166,7 +165,29 @@ namespace ReceiptTracker.Tests.DAL
         }
 
         [TestMethod]
-        public void RepoEnsureICanCreateReciptwithData()
+        public void RepoEnsureUserCanBeModified()
+        {
+            // arrange
+
+            // act
+
+            // assert
+        }
+
+
+        [TestMethod]
+        public void RepoEnsureICanAddAReceipt()
+        {
+
+            // arrange
+            
+            // act
+
+            // assert
+        }
+
+        [TestMethod]
+        public void RepoEnsureICanAddReciptWithData()
         {
 
             // arrange
@@ -176,6 +197,7 @@ namespace ReceiptTracker.Tests.DAL
             // assert
 
         }
+
 
     }
 }
