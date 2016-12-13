@@ -13,9 +13,12 @@ namespace ReceiptTracker.Models
 
         [Required]
         public string ReceiptType { get; set; }
-
+            //pdf html url
         [Required]
         public string Receipt { get; set; }
+            //pdf points to s3 object
+            //html  - render
+            //url - tbd
 
         [Required]
         public string Retailer { get; set; }

@@ -144,7 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ReceiptTracker\ReceiptTracker.csproj">
-      <Project>{01C268AB-CA81-492A-8702-CF6140C5C7B6}</Project>
+      <Project>{01c268ab-ca81-492a-8702-cf6140c5c7b6}</Project>
       <Name>ReceiptTracker</Name>
     </ProjectReference>
   </ItemGroup>
