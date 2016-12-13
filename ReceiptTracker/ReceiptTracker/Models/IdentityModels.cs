@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ReceiptTracker.DAL;
 
 namespace ReceiptTracker.Models
 {
@@ -16,6 +17,10 @@ namespace ReceiptTracker.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public UserModel ReceiptUser { get; set; }
+
+        
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

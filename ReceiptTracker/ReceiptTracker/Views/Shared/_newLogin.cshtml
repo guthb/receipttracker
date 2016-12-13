@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="row">
+            <h1 class="text-center login-title">Sign in to ReceiptTracker</h1>
+            <div class="account-wall">
+                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
+                <form class="form-signin">
+                    <input type="text" class="form-control" placeholder="Email" required="" autofocus="">
+                    <input type="password" class="form-control" placeholder="Password" required="">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">
+                        Sign in
+                    </button>
+                    <div class="row">
+                        <span class="fa fa-github fa-google fa-twitter-square" aria-hidden="true"></span>
+                    </div>
+
+                    <label class="checkbox pull-left">
+                        <input type="checkbox" value="remember-me">
+                        Remember me
+                    </label>
+                    <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                </form>
+                <a heref="#" class="text-center create-account">Create an Account</a>
+
+
+
+            </div>
+        </div>
+    </div>
+    <div> 
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
