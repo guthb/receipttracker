@@ -42,5 +42,18 @@ namespace ReceiptTracker.DAL
             //throw new NotImplementedException();
             return Context.ReceiptUsers.FirstOrDefault(u => u.ReceiptUser.UserName.ToLower() == v.ToLower());
         }
+
+        public UserModel RemoveUser(int userId)
+        {
+            //throw new NotImplementedException();
+
+            UserModel foundUser = Context.ReceiptUsers.FirstOrDefault(u => u.UserId == userId);
+            if (foundUser != null)
+            {
+                Context.ReceiptUsers.Remove(foundUser);
+                Context.SaveChanges();
+            }
+            return foundUser;
+        }
     }
 }
