@@ -53,13 +53,19 @@ namespace ReceiptTracker.Tests.DAL
             {
                //not sure how to add users
                new UserModel {
-                   //UserId = 1,
-                   //ReceiptUser = yeldarba
+                   UserId = 1,
+                   ReceiptUser = yeldarba,
+                   AppEmail = "yeldarb.a@guthb.com",
+                   FirstName = "yeldarb",
+                   LastName = "a"
                },
 
                 new UserModel {
-                    //UserId = 1,
-                    //ReceiptUser = yeldarbb
+                    UserId = 1,
+                    ReceiptUser = yeldarbb,
+                    AppEmail = "yeldarb.b@guthb.com",
+                    FirstName = "yeldarb",
+                    LastName = "b"
                }
 
             };
@@ -87,7 +93,7 @@ namespace ReceiptTracker.Tests.DAL
             mock_app_users.As<IQueryable<ApplicationUser>>().Setup(m => m.ElementType).Returns(query_app_users.ElementType);
             mock_app_users.As<IQueryable<ApplicationUser>>().Setup(m => m.GetEnumerator()).Returns(() => query_app_users.GetEnumerator());
 
-            //mock_context.Setup(c => c.Users).Returns(mock_app_users.Object);
+            mock_context.Setup(c => c.Users).Returns(mock_app_users.Object);
           
 
 
@@ -137,6 +143,7 @@ namespace ReceiptTracker.Tests.DAL
         {
 
             // arrange
+
 
             // act
 

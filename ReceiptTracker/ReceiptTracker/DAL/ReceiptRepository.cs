@@ -22,7 +22,8 @@ namespace ReceiptTracker.DAL
 
         public List<string> GetUserNames()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return Context.ReceiptUsers.Select(u => u.ReceiptUser.UserName).ToList();
         }
 
 
