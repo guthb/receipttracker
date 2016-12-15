@@ -9,15 +9,15 @@
       "type": "platform",
       "version": "1.0.0"
     },
-
     "Amazon.Lambda.Core": "1.0.0",
     "Amazon.Lambda.APIGatewayEvents": "1.0.0",
     "Amazon.Lambda.Serialization.Json": "1.0.1",
-
     "Amazon.Lambda.Tools": {
       "type": "build",
       "version": "1.0.2-preview1"
-    }
+    },
+    "MailKit": "1.10.1",
+    "AWSSDK.S3": "3.3.5.1"
   },
 
   "tools": {
