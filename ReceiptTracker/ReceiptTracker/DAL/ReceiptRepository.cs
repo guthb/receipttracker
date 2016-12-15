@@ -36,5 +36,11 @@ namespace ReceiptTracker.DAL
             }
             return false;
         }
+
+        public UserModel UserNameExistsofUserModel(string v)
+        {
+            //throw new NotImplementedException();
+            return Context.ReceiptUsers.FirstOrDefault(u => u.ReceiptUser.UserName.ToLower() == v.ToLower());
+        }
     }
 }

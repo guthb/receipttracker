@@ -158,10 +158,13 @@ namespace ReceiptTracker.Tests.DAL
         {
 
             // arrange
+            ConnectToDataStore();
 
             // act
+            UserModel foundUser = Repo.UserNameExistsofUserModel("yeldarba");
 
             // assert
+            Assert.IsNotNull(foundUser);
         }
 
         [TestMethod]
