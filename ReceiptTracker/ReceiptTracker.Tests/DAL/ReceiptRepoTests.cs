@@ -143,11 +143,14 @@ namespace ReceiptTracker.Tests.DAL
         {
 
             // arrange
-
+            ConnectToDataStore();
 
             // act
+            bool userExists = Repo.UserNameExists("yeldarba");
 
             // assert
+            Assert.IsTrue(userExists);
+
         }
 
         [TestMethod]
