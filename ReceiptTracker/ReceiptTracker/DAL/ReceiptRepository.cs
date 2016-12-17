@@ -55,5 +55,17 @@ namespace ReceiptTracker.DAL
             }
             return foundUser;
         }
+
+        public List<ReceiptModel> GetReceipts()
+        {
+            
+            return Context.Receipts.ToList();
+        }
+
+        public void AddReceipt(ReceiptModel receiptFromSES)
+        {
+            Context.Receipts.Add(receiptFromSES);
+            Context.SaveChanges();
+        }
     }
 }
