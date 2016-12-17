@@ -67,5 +67,11 @@ namespace ReceiptTracker.DAL
             Context.Receipts.Add(receiptFromSES);
             Context.SaveChanges();
         }
+
+        
     }
+
+
+
+}
 }

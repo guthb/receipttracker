@@ -218,24 +218,48 @@ namespace ReceiptTracker.Tests.DAL
         {
 
             // arrange
-            
+            ReceiptModel test_receipt = new ReceiptModel { ReceiptCapturedId = 1, ReceiptType = "pdf", Receipt = "testReceipt", Retailer="711", PurchaseDate=DateTime.Now, S3BuckedId="3333", Purpose="" };
+         
+
             // act
+            Repo.AddReceipt(test_receipt);
+            int actual_receipt_count = Repo.GetReceipts().Count;
+            int expected_receipt_count = 1;
 
             // assert
+            Assert.AreEqual(expected_receipt_count, actual_receipt_count);
         }
 
         [TestMethod]
-        public void RepoEnsureICanAddReciptWithData()
+        public void RepoEnsureICanAddToReceiptWithData()
         {
 
             // arrange
+            ReceiptModel test_receipt = new ReceiptModel { ReceiptCapturedId = 1, ReceiptType = "pdf", Receipt = "testReceipt", Retailer = "711", PurchaseDate = DateTime.Now, S3BuckedId = "3333", Purpose = "" };
+
 
             // act
+           //need to setup and test that what is added for Purpose checkes out
 
             // assert
 
         }
 
+        [TestMethod]
+        public void RepoEnsureICanRemoveReceipt()
+        {
+
+            // arrange
+            ReceiptModel test_receipt = new ReceiptModel { ReceiptCapturedId = 1, ReceiptType = "pdf", Receipt = "testReceipt", Retailer = "711", PurchaseDate = DateTime.Now, S3BuckedId = "3333", Purpose = "" };
+
+
+            // act
+            //need to add test that insures the count = 0 after remove
+            ReceiptModel removed_receipt = Repo.RemoveReceipt(test_receipt);
+
+            // assert
+
+        }
 
     }
 }
