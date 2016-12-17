@@ -18,7 +18,7 @@ namespace ReceiptTracker.Models
             return userIdentity;
         }
 
-        public UserModel ReceiptUser { get; set; }
+        public virtual UserModel ReceiptUser { get; set; }
 
         
     }

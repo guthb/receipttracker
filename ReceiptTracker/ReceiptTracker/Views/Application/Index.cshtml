@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title></title>
+    </head>
+    <body>
+        <div>
+            <div class="row">
+                <h1>{{title}}</h1>
+            </div>
+            <div class="scroll">
+                <div class="row">
+                    <div class="container">
+                        <div class="col-sm-12 card" ng-repeat="receipt in receipts">
+                            <p class="receipt">{{receipt.Receipt}}</p>
+                            <p class="receipt">{{receipt.Retailer}}</p>
+                            <p class="receipt">{{receipt.PurchaseDate}}</p>
+                            <p>Purpose</p>
+                            <div class="input-field">
+                                <input ng-required="true" required class="validate" type="text" placeholder="Purpose" ng-model="receipt.Purpose">
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+
+
