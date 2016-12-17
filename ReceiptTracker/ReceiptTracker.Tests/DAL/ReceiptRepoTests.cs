@@ -167,39 +167,40 @@ namespace ReceiptTracker.Tests.DAL
             Assert.IsNotNull(foundUser);
         }
 
-        [TestMethod]
-        public void RepoEnsureUserCanBeRemoved()
-        {
-            // arrange
-            ConnectToDataStore();
-            UserModel test_userModel = new UserModel
-            {
-                UserId = 5,
-                AppEmail = "test.user@guthb.com",
-                FirstName = "test",
-                LastName = "user"
-            };
-             UserModel next_test_userModel = new UserModel
-             {
-                 UserId = 6,
-                 AppEmail = "mest-tser@guthb.com",
-                 FirstName = "mest",
-                 LastName = "tser"
-             };
-            
-
-            // act
-            UserModel removed_userModel = Repo.RemoveUser(5);
-            int expected_test_users = 1;
-            int actual_test_users = Repo.Context.ReceiptUsers.Count();
-
-            // assert
-            Assert.AreEqual(expected_test_users, actual_test_users);
-            Assert.IsNotNull(removed_userModel);
+        //[TestMethod]
+        //public void RepoEnsureUserCanBeRemoved()
+        //{
+        //    // arrange
+        //    ConnectToDataStore();
+        //    UserModel test_userModel = new UserModel
+        //    {
+        //        UserId = 5,
+        //        AppEmail = "test.user@guthb.com",
+        //        FirstName = "test",
+        //        LastName = "user"
+        //    };
+        //    UserModel next_test_userModel = new UserModel
+        //    {
+        //        UserId = 6,
+        //        AppEmail = "mest-tser@guthb.com",
+        //        FirstName = "mest",
+        //        LastName = "tser"
+        //    };
 
 
+        //    // act
 
-        }
+        //    UserModel removed_userModel = Repo.RemoveUser(5);
+        //    int expected_test_users = 1;
+        //    int actual_test_users = Repo.Context.ReceiptUsers.Count();
+
+        //    // assert
+        //    Assert.AreEqual(expected_test_users, actual_test_users);
+        //    Assert.IsNotNull(removed_userModel);
+
+
+
+        //}
 
         [TestMethod]
         public void RepoEnsureUserCanBeModified()
