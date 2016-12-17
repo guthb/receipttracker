@@ -68,10 +68,9 @@ namespace ReceiptTracker.DAL
             Context.SaveChanges();
         }
 
-        
+        public ReceiptModel RemoveReceipt(ReceiptModel test_receipt)
+        {
+            throw new NotImplementedException();
+        }
     }
-
-
-
-}
 }
