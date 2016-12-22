@@ -255,7 +255,7 @@ namespace ReceiptTracker.Tests.DAL
 
             // act
             //need to add test that insures the count = 0 after remove
-            ReceiptModel removed_receipt = Repo.RemoveReceipt(test_receipt);
+            ReceiptModel removed_receipt = Repo.RemoveReceipt(test_receipt.ToString());
 
             // assert
 

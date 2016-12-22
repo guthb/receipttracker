@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ReceiptTracker.Models;
+using System.Threading.Tasks;
 
 namespace ReceiptTracker.DAL
 {
@@ -68,9 +69,36 @@ namespace ReceiptTracker.DAL
             Context.SaveChanges();
         }
 
-        public ReceiptModel RemoveReceipt(ReceiptModel test_receipt)
+
+        public void AddReceipt(string purpose)
         {
-            throw new NotImplementedException();
+            ReceiptModel _receipt_purpose = new ReceiptModel {Purpose = purpose };
+            Context.Receipts.Add(_receipt_purpose);
+            Context.SaveChanges();
         }
+
+        
+        public ReceiptModel RemoveReceipt(string test_receipt)
+        {
+            ReceiptModel found_receipt = FindReceiptEntered(test_receipt);
+            if (found_receipt != null)
+            {
+                Context.Receipts.Remove(found_receipt);
+                Context.SaveChanges();
+                return found_receipt;
+            }
+            else
+            {
+                throw new Exception("Error! Receipt doesn't exist");
+            }
+        }
+
+        public ReceiptModel FindReceiptEntered(string test_receipt)
+        {
+            ReceiptModel found_receipt = Context.Receipts.FirstOrDefault(r => r.Receipt.ToString() == test_receipt.ToString
+            ());
+            return found_receipt;
+        }
+
     }
 }
