@@ -322,6 +322,49 @@ namespace ReceiptTracker.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
+
+        //
+        // GET: /Manage/ModifyUser\
+        [HttpGet]
+        
+        public ActionResult ModifyUser()
+        {
+            return View();
+        }
+
+
+
+        //
+        // POST: /Manage/ModifyUser
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ModifyUser(ModifyUserViewModel model)
+        {
+
+
+
+            if (ModelState.IsValid)
+            {
+                
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                if (user != null)
+                {
+                    user.UserName = model.Email;
+                    user.Email = model.Email;
+                    user.ReceiptUser.FirstName = model.FirstName;
+                    user.ReceiptUser.LastName = model.LastName;
+                    var result = await UserManager.UpdateAsync(user);
+
+                    if (result.Succeeded)
+                    {                      
+                        return RedirectToAction("Index");
+                    }
+                }
+                
+            }
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)

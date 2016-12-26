@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -31,6 +32,11 @@ namespace ReceiptTracker.Models
 
         [Required]
         public string Purpose { get; set; }
+
+        [ForeignKey("ReceiptUser")]
+        public int UserId { get; set; }
+        
+        public virtual UserModel ReceiptUser { get; set; }
 
     }
 }

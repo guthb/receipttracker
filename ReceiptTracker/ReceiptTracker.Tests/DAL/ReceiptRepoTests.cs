@@ -51,19 +51,32 @@ namespace ReceiptTracker.Tests.DAL
 
             users = new List<UserModel>
             {
-               //not sure how to add users
-               new UserModel {
-                   //UserId = 1,
-                   //ReceiptUser = yeldarba
+                //guide for users
+                //Id = Guid.NewGuid().ToString(),
+                //Email = "test@test.com",
+                //SecurityStamp = Guid.NewGuid().ToString(),
+                //PhoneNumberConfirmed = false,
+                //TwoFactorEnabled = false,
+                //EmailConfirmed = true,
+                //LockoutEnabled = true,
+                //AccessFailedCount = 0,
+                //UserName = "test@test.com",
+                //ReceiptUser = new UserModel() { UserId = 1, AppEmail = "John.Doe@guthb.com", FirstName = "John", LastName = "Doe" }
+
+                new UserModel {
+                   UserId = 1,
+                   AppEmail = "yeldarb.a@test.com",
+                   FirstName = "yeldarb",
+                   LastName = "a"
                },
 
                 new UserModel {
-                    //UserId = 1,
-                    //ReceiptUser = yeldarbb
+                    UserId = 2,                    
+                    AppEmail = "yeldarb.b@test.com",
+                    FirstName = "yeldarb",
+                    LastName = "b"
                }
-
             };
-
         } 
 
 
@@ -87,7 +100,7 @@ namespace ReceiptTracker.Tests.DAL
             mock_app_users.As<IQueryable<ApplicationUser>>().Setup(m => m.ElementType).Returns(query_app_users.ElementType);
             mock_app_users.As<IQueryable<ApplicationUser>>().Setup(m => m.GetEnumerator()).Returns(() => query_app_users.GetEnumerator());
 
-            //mock_context.Setup(c => c.Users).Returns(mock_app_users.Object);
+            mock_context.Setup(c => c.Users).Returns(mock_app_users.Object);
           
 
 
@@ -137,10 +150,14 @@ namespace ReceiptTracker.Tests.DAL
         {
 
             // arrange
+            ConnectToDataStore();
 
             // act
+            bool userExists = Repo.UserNameExists("yeldarb.a@guthb.com");
 
             // assert
+            Assert.IsTrue(userExists);
+
         }
 
         [TestMethod]
@@ -148,20 +165,45 @@ namespace ReceiptTracker.Tests.DAL
         {
 
             // arrange
+            ConnectToDataStore();
 
             // act
+            UserModel foundUser = Repo.UserNameExistsofUserModel("yeldarba");
 
             // assert
+            Assert.IsNotNull(foundUser);
         }
 
         [TestMethod]
         public void RepoEnsureUserCanBeRemoved()
         {
             // arrange
+            ConnectToDataStore();
+            UserModel test_userModel = new UserModel
+            {
+                UserId = 5,
+                AppEmail = "test.user@guthb.com",
+                FirstName = "test",
+                LastName = "user"
+            };
+            UserModel next_test_userModel = new UserModel
+            {
+                UserId = 6,
+                AppEmail = "mest.tser@guthb.com",
+                FirstName = "mest",
+                LastName = "tser"
+            };
+
 
             // act
+            UserModel removed_userModel = Repo.RemoveUser(5);
+            int expected_test_users = 1;
+            int actual_test_users = Repo.Context.ReceiptUsers.Count();
 
             // assert
+            Assert.AreEqual(expected_test_users, actual_test_users);
+            Assert.IsNotNull(removed_userModel);
+
         }
 
         [TestMethod]
@@ -180,24 +222,97 @@ namespace ReceiptTracker.Tests.DAL
         {
 
             // arrange
-            
+            ConnectToDataStore();
+            ReceiptModel test_receipt = new ReceiptModel
+            {
+                ReceiptCapturedId = 1,
+                ReceiptType = "pdf",
+                Receipt = "testReceipt",
+                Retailer ="711",
+                PurchaseDate =DateTime.Now,
+                S3BuckedId ="3333",
+                Purpose ="Stuff",
+                ReceiptUser = new UserModel { UserId = 1,
+                                              AppEmail = "John.Doe@guthb.com",
+                                              FirstName = "John",
+                                              LastName = "Doe" }
+            };
+         
+
             // act
+            Repo.AddReceipt(test_receipt);
+            int actual_receipt_count = Repo.GetReceipts().Count;
+            int expected_receipt_count = 1;
 
             // assert
+            Assert.AreEqual(expected_receipt_count, actual_receipt_count);
         }
 
         [TestMethod]
-        public void RepoEnsureICanAddReciptWithData()
+        public void RepoEnsureICanAddToReceiptWithData()
         {
 
             // arrange
+            ReceiptModel test_receipt = new ReceiptModel
+            {
+                ReceiptCapturedId = 1,
+                ReceiptType = "pdf",
+                Receipt = "testReceipt",
+                Retailer = "711",
+                PurchaseDate = DateTime.Now,
+                S3BuckedId = "3333",
+                Purpose = "Old Purpose",
+                ReceiptUser = new UserModel
+                {
+                    UserId = 1,
+                    AppEmail = "John.Doe@guthb.com",
+                    FirstName = "John",
+                    LastName = "Doe"
+                }
+            };
+
+            string update_purpose = "new_purpose";
 
             // act
+            Repo.AddReceiptPurpose(update_purpose);
+
+            // assert
+            Assert.AreEqual(test_receipt.Purpose, update_purpose);
+
+        }
+
+        [TestMethod]
+        public void RepoEnsureICanRemoveReceipt()
+        {
+
+            // arrange
+            ConnectToDataStore();
+            ReceiptModel test_receipt = new ReceiptModel
+            {
+                ReceiptCapturedId = 1,
+                ReceiptType = "pdf",
+                Receipt = "testReceipt",
+                Retailer = "711",
+                PurchaseDate = DateTime.Now,
+                S3BuckedId = "3333",
+                Purpose = "Remove",
+                ReceiptUser = new UserModel
+                {
+                    UserId = 1,
+                    AppEmail = "John.Doe@guthb.com",
+                    FirstName = "John",
+                    LastName = "Doe"
+                }
+            };
+
+
+            // act
+            //need to add test that insures the count = 0 after remove
+            //ReceiptModel removed_receipt = Repo.RemoveReceipt();
 
             // assert
 
         }
-
 
     }
 }

@@ -1,1 +1,2 @@
-﻿var app = angular.module("ReceiptTracker", []);
+﻿'use strict';
+var app = angular.module("ReceiptTracker", []);
