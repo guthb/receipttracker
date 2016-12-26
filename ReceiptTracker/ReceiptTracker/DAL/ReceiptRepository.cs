@@ -70,7 +70,7 @@ namespace ReceiptTracker.DAL
         }
 
 
-        public void AddReceipt(string purpose)
+        public void AddReceiptPurpose(string purpose)
         {
             ReceiptModel _receipt_purpose = new ReceiptModel {Purpose = purpose };
             Context.Receipts.Add(_receipt_purpose);
@@ -78,9 +78,9 @@ namespace ReceiptTracker.DAL
         }
 
         
-        public ReceiptModel RemoveReceipt(string test_receipt)
+        public ReceiptModel RemoveReceipt(int receiptId)
         {
-            ReceiptModel found_receipt = FindReceiptEntered(test_receipt);
+            ReceiptModel found_receipt = FindReceiptEntered(receiptId.ToString());
             if (found_receipt != null)
             {
                 Context.Receipts.Remove(found_receipt);
