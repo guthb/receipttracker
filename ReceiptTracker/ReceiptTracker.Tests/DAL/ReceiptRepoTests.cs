@@ -65,20 +65,22 @@ namespace ReceiptTracker.Tests.DAL
 
                 new UserModel {
                    UserId = 1,
-                   AppEmail = "yeldarb.a@test.com",
-                   FirstName = "yeldarb",
-                   LastName = "a"
-               },
+                   AppEmail = "fred.rogers@test.com",
+                   FirstName = "fred",
+                   LastName = "rogers",
+                   ReceiptUser = {UserName= "fred@somewhere.com" }
+                },
+                   
 
                 new UserModel {
                     UserId = 2,                    
-                    AppEmail = "yeldarb.b@test.com",
-                    FirstName = "yeldarb",
-                    LastName = "b"
+                    AppEmail = "king.fridayb@test.com",
+                    FirstName = "king",
+                    LastName = "friday",
+                    ReceiptUser = {UserName= "king@somewhere.com" }
                }
             };
         } 
-
 
         public void ConnectToDataStore()
         {
@@ -138,6 +140,7 @@ namespace ReceiptTracker.Tests.DAL
             ConnectToDataStore();
 
             // act
+            
             List<string> usernames = Repo.GetUserNames();
 
             // assert
