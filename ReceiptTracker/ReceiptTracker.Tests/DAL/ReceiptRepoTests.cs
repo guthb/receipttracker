@@ -68,7 +68,9 @@ namespace ReceiptTracker.Tests.DAL
                    AppEmail = "fred.rogers@test.com",
                    FirstName = "fred",
                    LastName = "rogers",
-                   ReceiptUser = {UserName= "fred@somewhere.com" }
+                   ReceiptUser =  new ApplicationUser () {UserName= "fred@somewhere.com" }
+
+                   
                 },
                    
 
@@ -77,7 +79,7 @@ namespace ReceiptTracker.Tests.DAL
                     AppEmail = "king.fridayb@test.com",
                     FirstName = "king",
                     LastName = "friday",
-                    ReceiptUser = {UserName= "king@somewhere.com" }
+                    ReceiptUser = new ApplicationUser () {UserName= "king@somewhere.com" }
                }
             };
         } 
@@ -156,7 +158,7 @@ namespace ReceiptTracker.Tests.DAL
             ConnectToDataStore();
 
             // act
-            bool userExists = Repo.UserNameExists("yeldarb.a@guthb.com");
+            bool userExists = Repo.UserNameExists("fred@somewhere.com");
 
             // assert
             Assert.IsTrue(userExists);
