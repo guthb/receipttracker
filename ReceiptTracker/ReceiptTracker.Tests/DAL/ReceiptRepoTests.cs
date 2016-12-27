@@ -173,7 +173,7 @@ namespace ReceiptTracker.Tests.DAL
             ConnectToDataStore();
 
             // act
-            UserModel foundUser = Repo.UserNameExistsofUserModel("yeldarba");
+            UserModel foundUser = Repo.UserNameExistsofUserModel("fred@somewhere.com");
 
             // assert
             Assert.IsNotNull(foundUser);
