@@ -184,24 +184,9 @@ namespace ReceiptTracker.Tests.DAL
         {
             // arrange
             ConnectToDataStore();
-            UserModel test_userModel = new UserModel
-            {
-                UserId = 5,
-                AppEmail = "test.user@guthb.com",
-                FirstName = "test",
-                LastName = "user"
-            };
-            UserModel next_test_userModel = new UserModel
-            {
-                UserId = 6,
-                AppEmail = "mest.tser@guthb.com",
-                FirstName = "mest",
-                LastName = "tser"
-            };
-
 
             // act
-            UserModel removed_userModel = Repo.RemoveUser(5);
+            UserModel removed_userModel = Repo.RemoveUser(2);
             int expected_test_users = 1;
             int actual_test_users = Repo.Context.ReceiptUsers.Count();
 
@@ -210,17 +195,6 @@ namespace ReceiptTracker.Tests.DAL
             Assert.IsNotNull(removed_userModel);
 
         }
-
-        [TestMethod]
-        public void RepoEnsureUserCanBeModified()
-        {
-            // arrange
-
-            // act
-
-            // assert
-        }
-
 
         [TestMethod]
         public void RepoEnsureICanAddAReceipt()
@@ -276,7 +250,7 @@ namespace ReceiptTracker.Tests.DAL
                 }
             };
 
-            string update_purpose = "new_purpose";
+            string update_purpose = "New purpose";
 
             // act
             Repo.AddReceiptPurpose(update_purpose);
@@ -313,10 +287,14 @@ namespace ReceiptTracker.Tests.DAL
 
             // act
             //need to add test that insures the count = 0 after remove
-            //ReceiptModel removed_receipt = Repo.RemoveReceipt();
+
+            ReceiptModel removed_receipt = Repo.RemoveReceipt(1);
+            int actual_receipt_count = Repo.GetReceipts().Count;
+            int expected_receipt_count = 0;
+
 
             // assert
-
+            Assert.AreEqual(expected_receipt_count, actual_receipt_count);
         }
 
     }
