@@ -70,11 +70,23 @@ namespace ReceiptTracker.DAL
         }
 
 
-        public void AddReceiptPurpose(string purpose)
+        public void AddReceiptPurpose(int receiptId, string purpose)
         {
-            ReceiptModel _receipt_purpose = new ReceiptModel {Purpose = purpose };
-            Context.Receipts.Add(_receipt_purpose);
-            Context.SaveChanges();
+
+            ReceiptModel found_receipt = FindReceiptEntered(receiptId.ToString());
+            if (found_receipt != null)
+            {
+                found_receipt.Purpose =  purpose ;
+                Context.Receipts.Add(found_receipt);
+                Context.SaveChanges();
+                return;
+            }
+
+            //ReceiptModel _receipt_purpose = new ReceiptModel {Purpose = purpose };
+            //Context.Receipts.Add(_receipt_purpose);
+            //Context.SaveChanges();
+
+            throw new Exception("Error! Receipt doesn't exist");
         }
 
         
@@ -95,8 +107,7 @@ namespace ReceiptTracker.DAL
 
         public ReceiptModel FindReceiptEntered(string test_receipt)
         {
-            ReceiptModel found_receipt = Context.Receipts.FirstOrDefault(r => r.Receipt.ToString() == test_receipt.ToString
-            ());
+            ReceiptModel found_receipt = Context.Receipts.FirstOrDefault(r => r.ReceiptCapturedId.ToString() == test_receipt.ToString());
             return found_receipt;
         }
 

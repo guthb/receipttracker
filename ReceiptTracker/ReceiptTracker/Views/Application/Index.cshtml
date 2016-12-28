@@ -3,27 +3,37 @@
 }
 
 <!DOCTYPE html>
-<html ng-app="ReceiptTracker" ng-controller="ReceiptViewCtrl">
+<html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title></title>
 
 </head>
-<body ng-controller="ReceiptViewCtrl">
+<body>
     <div>
-        <div class="row">
+        <div class="row" ng-app="ReceiptTracker">
+            <div>{{ "two plus two equals" + (2 + 2)"}}</div>
+
             <h1>{{title}}</h1>
         </div>
-        <div class="scroll">
+       
+        <div class="scroll" ng-controller="ReceiptView as viewModel">
+            <div class="text-danger" ng-show="viewModel.errorMessage">
+                {{viewModel.errorMessage}}
+            </div>
+            <div ng-show="viewModel.isBusy" class="text-center"><i class="fa fa-spinner fa-spin"></i>
+                Loading...
+            </div>
             <div class="row">
-                <div class="container">
+                <div class="container" >
                     <div class="col-sm-12 card" ng-repeat="receipt in receipts">
                         <p class="receipt">{{receipt.Receipt}}</p>
                         <p class="receipt">{{receipt.Retailer}}</p>
-                        <p class="receipt">{{receipt.PurchaseDate}}</p>
+                        <p class="receipt">{{receipt.PurchaseDate | date: 'shortDate'}}</p>
                         <p>Purpose</p>
                         <div class="input-field">
-                            <input ng-required="true" required class="validate" type="text" placeholder="Purpose" ng-model="receipt.Purpose">
+                            <input ng-required="true" required class="validate" type="text" placeholder="Purpose" ng-model="viewModel.receipts.Purpose" ng-submit="viewModel.updatePurpose()">
+                            <input type="submit" value="Add"class="btn btn-sm btn-success" ng-disabled="viewModel.receipts.Purpose.$invalid"> 
                         </div>
                     </div>
                 </div>

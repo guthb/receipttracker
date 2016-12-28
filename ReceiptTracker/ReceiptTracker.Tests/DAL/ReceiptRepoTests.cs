@@ -65,20 +65,24 @@ namespace ReceiptTracker.Tests.DAL
 
                 new UserModel {
                    UserId = 1,
-                   AppEmail = "yeldarb.a@test.com",
-                   FirstName = "yeldarb",
-                   LastName = "a"
-               },
+                   AppEmail = "fred.rogers@test.com",
+                   FirstName = "fred",
+                   LastName = "rogers",
+                   ReceiptUser =  new ApplicationUser () {UserName= "fred@somewhere.com" }
+
+                   
+                },
+                   
 
                 new UserModel {
                     UserId = 2,                    
-                    AppEmail = "yeldarb.b@test.com",
-                    FirstName = "yeldarb",
-                    LastName = "b"
+                    AppEmail = "king.fridayb@test.com",
+                    FirstName = "king",
+                    LastName = "friday",
+                    ReceiptUser = new ApplicationUser () {UserName= "king@somewhere.com" }
                }
             };
         } 
-
 
         public void ConnectToDataStore()
         {
@@ -138,6 +142,7 @@ namespace ReceiptTracker.Tests.DAL
             ConnectToDataStore();
 
             // act
+            
             List<string> usernames = Repo.GetUserNames();
 
             // assert
@@ -153,7 +158,7 @@ namespace ReceiptTracker.Tests.DAL
             ConnectToDataStore();
 
             // act
-            bool userExists = Repo.UserNameExists("yeldarb.a@guthb.com");
+            bool userExists = Repo.UserNameExists("fred@somewhere.com");
 
             // assert
             Assert.IsTrue(userExists);
@@ -168,7 +173,7 @@ namespace ReceiptTracker.Tests.DAL
             ConnectToDataStore();
 
             // act
-            UserModel foundUser = Repo.UserNameExistsofUserModel("yeldarba");
+            UserModel foundUser = Repo.UserNameExistsofUserModel("fred@somewhere.com");
 
             // assert
             Assert.IsNotNull(foundUser);
@@ -179,24 +184,9 @@ namespace ReceiptTracker.Tests.DAL
         {
             // arrange
             ConnectToDataStore();
-            UserModel test_userModel = new UserModel
-            {
-                UserId = 5,
-                AppEmail = "test.user@guthb.com",
-                FirstName = "test",
-                LastName = "user"
-            };
-            UserModel next_test_userModel = new UserModel
-            {
-                UserId = 6,
-                AppEmail = "mest.tser@guthb.com",
-                FirstName = "mest",
-                LastName = "tser"
-            };
-
 
             // act
-            UserModel removed_userModel = Repo.RemoveUser(5);
+            UserModel removed_userModel = Repo.RemoveUser(2);
             int expected_test_users = 1;
             int actual_test_users = Repo.Context.ReceiptUsers.Count();
 
@@ -205,17 +195,6 @@ namespace ReceiptTracker.Tests.DAL
             Assert.IsNotNull(removed_userModel);
 
         }
-
-        [TestMethod]
-        public void RepoEnsureUserCanBeModified()
-        {
-            // arrange
-
-            // act
-
-            // assert
-        }
-
 
         [TestMethod]
         public void RepoEnsureICanAddAReceipt()
@@ -253,6 +232,7 @@ namespace ReceiptTracker.Tests.DAL
         {
 
             // arrange
+            ConnectToDataStore();
             ReceiptModel test_receipt = new ReceiptModel
             {
                 ReceiptCapturedId = 1,
@@ -262,19 +242,21 @@ namespace ReceiptTracker.Tests.DAL
                 PurchaseDate = DateTime.Now,
                 S3BuckedId = "3333",
                 Purpose = "Old Purpose",
-                ReceiptUser = new UserModel
+                ReceiptUser = new UserModel()
                 {
                     UserId = 1,
                     AppEmail = "John.Doe@guthb.com",
                     FirstName = "John",
                     LastName = "Doe"
+
+
                 }
             };
-
-            string update_purpose = "new_purpose";
+            Repo.AddReceipt(test_receipt);
+            string update_purpose = "New Purpose";
 
             // act
-            Repo.AddReceiptPurpose(update_purpose);
+            Repo.AddReceiptPurpose(1, update_purpose);
 
             // assert
             Assert.AreEqual(test_receipt.Purpose, update_purpose);
@@ -308,10 +290,15 @@ namespace ReceiptTracker.Tests.DAL
 
             // act
             //need to add test that insures the count = 0 after remove
-            //ReceiptModel removed_receipt = Repo.RemoveReceipt();
+            Repo.AddReceipt(test_receipt);
+
+            ReceiptModel removed_receipt = Repo.RemoveReceipt(1);
+            int actual_receipt_count = Repo.GetReceipts().Count;
+            int expected_receipt_count = 0;
+
 
             // assert
-
+            Assert.AreEqual(expected_receipt_count, actual_receipt_count);
         }
 
     }

@@ -299,6 +299,7 @@
     <Content Include="Views\Shared\_newLogin.cshtml" />
     <Content Include="Views\Application\Index.cshtml" />
     <Content Include="Views\Manage\ModifyUser.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
