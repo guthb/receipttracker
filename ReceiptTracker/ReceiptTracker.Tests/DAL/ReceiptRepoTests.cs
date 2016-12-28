@@ -232,6 +232,7 @@ namespace ReceiptTracker.Tests.DAL
         {
 
             // arrange
+            ConnectToDataStore();
             ReceiptModel test_receipt = new ReceiptModel
             {
                 ReceiptCapturedId = 1,
@@ -241,19 +242,21 @@ namespace ReceiptTracker.Tests.DAL
                 PurchaseDate = DateTime.Now,
                 S3BuckedId = "3333",
                 Purpose = "Old Purpose",
-                ReceiptUser = new UserModel
+                ReceiptUser = new UserModel()
                 {
                     UserId = 1,
                     AppEmail = "John.Doe@guthb.com",
                     FirstName = "John",
                     LastName = "Doe"
+
+
                 }
             };
-
-            string update_purpose = "New purpose";
+            Repo.AddReceipt(test_receipt);
+            string update_purpose = "New Purpose";
 
             // act
-            Repo.AddReceiptPurpose(update_purpose);
+            Repo.AddReceiptPurpose(1, update_purpose);
 
             // assert
             Assert.AreEqual(test_receipt.Purpose, update_purpose);
@@ -287,6 +290,7 @@ namespace ReceiptTracker.Tests.DAL
 
             // act
             //need to add test that insures the count = 0 after remove
+            Repo.AddReceipt(test_receipt);
 
             ReceiptModel removed_receipt = Repo.RemoveReceipt(1);
             int actual_receipt_count = Repo.GetReceipts().Count;
