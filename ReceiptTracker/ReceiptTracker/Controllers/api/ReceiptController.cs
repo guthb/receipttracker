@@ -14,13 +14,21 @@ namespace ReceiptTracker.Controllers.api
     public class ReceiptController : ApiController
     {
 
-        ReceiptRepository Repo = new ReceiptRepository();
-        
-        // GET api/<controller>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        //ReceiptRepository Repo = new ReceiptRepository();
+        private ReceiptRepository _repo;
+        public ReceiptController(ReceiptRepository repo)
         {
-            return new string[] { "value1", "value2" };
+            _repo = repo;
+        }
+
+
+        // GET api/<controller>
+        //[HttpGet]
+        public IEnumerable<ReceiptModel> Get()
+        {
+            //return new string[] { "value1", "value2" };
+            var receipts = _repo.GetReceipts().OrderByDescending(t => t.PurchaseDate).Take(50);
+            return receipts;
         }
         
         // GET api/<controller>/5
