@@ -63,11 +63,12 @@ namespace ReceiptTracker.DAL
             return Context.Receipts.ToList();
         }
 
-        public void AddReceipt(ReceiptModel receiptFromSES)
+        public int AddReceipt(ReceiptModel receiptFromSES)
         {
             Context.Receipts.Add(receiptFromSES);
-            Context.SaveChanges();
+            return Context.SaveChanges();
         }
+
 
 
         public void AddReceiptPurpose(int receiptId, string purpose)

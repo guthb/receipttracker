@@ -25,7 +25,9 @@ namespace ReceiptTracker
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                       "~/Scripts/angular.js",
-                      "~/Scripts/app.js"));
+                      "~/Scripts/app.js",
+                      "~/Scripts/Controllers/HomeIndexCtrl.js",
+                      "~/Scripts/Controllers/ReceiptViewCtrl.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

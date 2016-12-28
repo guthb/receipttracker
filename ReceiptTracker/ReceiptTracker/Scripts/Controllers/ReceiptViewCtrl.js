@@ -1,13 +1,13 @@
-﻿'use strict';
+﻿//ReceiptViewCtrl.js
+'use strict';
 
 
-app.controller("ReceiptView", function ($scope, $http, $rootScope) {
+app.controller("ReceiptView", function ($scope, $http) {
 
 
     $scope.title = "Receipts";
     $scope.display = [];
-    $rootscope.selecteReciept = {};
-    $rootscope.EditMode = false;
+    
 
     $scope.newReceipt = {
         ReceiptCapturedId: "",
@@ -47,7 +47,7 @@ app.controller("ReceiptView", function ($scope, $http, $rootScope) {
 
 
     //calls the database to return the receipts
-    function ReceiptView($http) {
+    function ReceiptView($scope, $http) {
 
         $http.get("/api/receipts")
             .then(function (response) {

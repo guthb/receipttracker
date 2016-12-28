@@ -23,7 +23,7 @@ namespace ReceiptTracker.Controllers.api
 
 
         // GET api/<controller>
-        //[HttpGet]
+        [HttpGet]
         public IEnumerable<ReceiptModel> Get()
         {
             //return new string[] { "value1", "value2" };
@@ -38,13 +38,22 @@ namespace ReceiptTracker.Controllers.api
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Post([FromBody]ReceiptModel value)
         {
+            if (_repo.AddReceipt(value) > 0)
+            {
+                return Request.CreateResponse(HttpStatusCode.Created, value);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
+
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]ReceiptModel purpose)
         {
+           // _repo.AddReceiptPurpose(id, purpose)
+            
         }
 
         // DELETE api/<controller>/5
