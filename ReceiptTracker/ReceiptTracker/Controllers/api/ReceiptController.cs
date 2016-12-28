@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
 using ReceiptTracker.DAL;
+using ReceiptTracker.Models;
+using System.Web.Http;
 
-namespace ReceiptTracker.Controllers
+
+namespace ReceiptTracker.Controllers.api
 {
-    public class UserController : ApiController
+    [Route("api/[controller]")]
+    public class ReceiptController : ApiController
     {
 
         ReceiptRepository Repo = new ReceiptRepository();
-
+        
         // GET api/<controller>
+        [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
-
+        
         // GET api/<controller>/5
         public string Get(int id)
         {

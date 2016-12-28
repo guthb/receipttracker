@@ -199,8 +199,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ReceiptController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\api\ReceiptController.cs" />
+    <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="DAL\ReceiptContext.cs" />
     <Compile Include="DAL\ReceiptRepository.cs" />
     <Compile Include="Global.asax.cs">
