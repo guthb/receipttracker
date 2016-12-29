@@ -8,18 +8,19 @@ using ReceiptTracker.Models;
 using System.Web.Http;
 
 
-namespace ReceiptTracker.Controllers.api
+
+namespace ReceiptTracker.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/receipt")]
     public class ReceiptController : ApiController
     {
 
-        //ReceiptRepository Repo = new ReceiptRepository();
-        private ReceiptRepository _repo;
-        public ReceiptController(ReceiptRepository repo)
-        {
-            _repo = repo;
-        }
+        ReceiptRepository _repo = new ReceiptRepository();
+        //private ReceiptRepository _repo;
+        //public ReceiptController(ReceiptRepository repo)
+        //{
+        //    _repo = repo;
+        //}
 
 
         // GET api/<controller>

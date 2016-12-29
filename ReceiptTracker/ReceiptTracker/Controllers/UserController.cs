@@ -6,7 +6,7 @@ using System.Net.Http;
 using ReceiptTracker.DAL;
 using System.Web.Http;
 
-namespace ReceiptTracker.Controllers.api
+namespace ReceiptTracker.Controllers
 {
     public class UserController : ApiController
     {

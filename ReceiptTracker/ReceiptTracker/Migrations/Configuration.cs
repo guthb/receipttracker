@@ -32,24 +32,64 @@ namespace ReceiptTracker.Migrations
             //    System.Diagnostics.Debugger.Launch();
             //}
 
+            var ApplicationUser = new ApplicationUser()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Email = "frank@test.com",
+                SecurityStamp = Guid.NewGuid().ToString(),
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                EmailConfirmed = true,
+                LockoutEnabled = true,
+                AccessFailedCount = 0,
+                UserName = "frank@test.com",
+                //ReceiptUser = new UserModel() { UserId = 1, AppEmail = "John.Doe@guthb.com", FirstName = "John", LastName = "Doe" }
 
-            context.Users.AddOrUpdate(u => u.Id,
+            };
 
-                new ApplicationUser()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Email = "guppy96@gmail.com",
-                    SecurityStamp = Guid.NewGuid().ToString(),
-                    PhoneNumberConfirmed = false,
-                    TwoFactorEnabled = false,
-                    EmailConfirmed = true,
-                    LockoutEnabled = true,
-                    AccessFailedCount =0,
-                    UserName = "guppy96@gmail.com",
-                    ReceiptUser = new UserModel() { UserId = 1, AppEmail = "John.Doe@guthb.com", FirstName = "John", LastName = "Doe" }
-                }
+            var _ReceiptUser = new UserModel() { UserId = 1, AppEmail = "John.Doe@guthb.com", FirstName = "John", LastName = "Doe", ReceiptUser = ApplicationUser };
 
-            );
+            ApplicationUser.ReceiptUser = _ReceiptUser;
+
+            context.Users.AddOrUpdate(u => u.Email, ApplicationUser);
+
+            //context.Users.AddOrUpdate(u => u.Id,
+
+            //    new ApplicationUser()
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        Email = "guppy96@gmail.com",
+            //        SecurityStamp = Guid.NewGuid().ToString(),
+            //        PhoneNumberConfirmed = false,
+            //        TwoFactorEnabled = false,
+            //        EmailConfirmed = true,
+            //        LockoutEnabled = true,
+            //        AccessFailedCount = 0,
+            //        UserName = "guppy96@gmail.com",
+            //        ReceiptUser = new UserModel() { UserId = 1, AppEmail = "John.Doe@guthb.com", FirstName = "John", LastName = "Doe" }
+
+            //    }
+
+            //);
+
+            //context.ReceiptUsers.AddOrUpdate(r => r.UserId,
+            //    new UserModel() { UserId = 1, AppEmail = "John.Doe@guthb.com",
+            //        FirstName = "John",
+            //        LastName = "Doe",
+            //        ReceiptUser = new ApplicationUser()
+            //        {
+            //            Id = Guid.NewGuid().ToString(),
+            //            Email = "guppy96@gmail.com",
+            //            SecurityStamp = Guid.NewGuid().ToString(),
+            //            PhoneNumberConfirmed = false,
+            //            TwoFactorEnabled = false,
+            //            EmailConfirmed = true,
+            //            LockoutEnabled = true,
+            //            AccessFailedCount = 0,
+            //            UserName = "guppy96@gmail.com",
+            //        }
+            //    });
+
 
             //context.ReceiptUsers.AddOrUpdate(u => u.UserId,
 

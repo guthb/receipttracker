@@ -1,25 +1,26 @@
 ﻿//ReceiptViewCtrl.js
 'use strict';
 
-
+angular.module("ReceiptTracker");
 app.controller("ReceiptView", function ($scope, $http) {
 
 
-    $scope.title = "Receipts";
-    $scope.display = [];
     
-
+    
+    //reset any data already on the scope
     $scope.newReceipt = {
-        ReceiptCapturedId: "",
-        ReceiptType: "",
-        Receipt: "",
-        Retailer: "",
-        PurchaseDate: "",
-        S3BuckedId: "",
-        Purpose: ""
+        ReceiptCapturedId: "x",
+        ReceiptType: "x",
+        Receipt: "xx",
+        Retailer: "x",
+        PurchaseDate: "xxxx",
+        S3BuckedId: "xx",
+        Purpose: "xx"
     };
 
     var viewModel = this;
+    viewModel.title = "Receipts";
+    
     viewModel.receipts = [];
     //viewModel.receipts = [{
     //    ReceiptCapturedId: "1",
@@ -49,7 +50,7 @@ app.controller("ReceiptView", function ($scope, $http) {
     //calls the database to return the receipts
     function ReceiptView($scope, $http) {
         viewModel.isBusy = true;
-        $http.get("/api/receipts")
+        $http.get("/api/receipt")
             .then(function (response) {
                 //Success
                 angular.copy(response.data, viewModel.receipts)
@@ -71,7 +72,7 @@ app.controller("ReceiptView", function ($scope, $http) {
         //viewModel.Purpose.push({ Purpose: viewModel.newReceiptPurpose})
         //viewModel.Purpose = {};
         viewModel.isBusy = true;
-        $http.post("/api/receipts", viewModel.newReceiptPurpose)
+        $http.post("/api/receipt", viewModel.newReceiptPurpose)
             .then(function (response) {
                 //Success
                 viewModel.Purpose.push(response.data);

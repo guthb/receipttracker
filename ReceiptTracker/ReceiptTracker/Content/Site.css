@@ -101,3 +101,7 @@ textarea {
   border-left:none !important;
   box-shadow: inset 0px 1px 0 rgba(0,0,0,.075);
 }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}

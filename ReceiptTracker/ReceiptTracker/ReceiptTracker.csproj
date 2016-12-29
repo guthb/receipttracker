@@ -201,8 +201,8 @@
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\api\ReceiptController.cs" />
-    <Compile Include="Controllers\api\UserController.cs" />
+    <Compile Include="Controllers\ReceiptController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\ReceiptContext.cs" />
     <Compile Include="DAL\ReceiptRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -219,6 +219,10 @@
     <Compile Include="Migrations\201612212318459_CustomerTestData.cs" />
     <Compile Include="Migrations\201612212318459_CustomerTestData.Designer.cs">
       <DependentUpon>201612212318459_CustomerTestData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612292155003_circularreferencereceiptuserandreceiptremoval.cs" />
+    <Compile Include="Migrations\201612292155003_circularreferencereceiptuserandreceiptremoval.Designer.cs">
+      <DependentUpon>201612292155003_circularreferencereceiptuserandreceiptremoval.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -240,6 +244,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app.js" />
@@ -251,6 +257,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\angular-route.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Controllers\HomeIndexCtrl.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -331,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612212318459_CustomerTestData.resx">
       <DependentUpon>201612212318459_CustomerTestData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612292155003_circularreferencereceiptuserandreceiptremoval.resx">
+      <DependentUpon>201612292155003_circularreferencereceiptuserandreceiptremoval.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

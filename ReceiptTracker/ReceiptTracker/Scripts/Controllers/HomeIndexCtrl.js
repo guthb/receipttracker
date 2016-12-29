@@ -6,7 +6,7 @@ var module = angular.module("HomeIndex", []);
 module.config(function ($routeProvider) {
     $routeProvider.when("/", {
 
-        controller: "ReceiptView",
+        controller: "HomeIndex",
         url: "/Views/Home/Index.cshtml"
     });
 
