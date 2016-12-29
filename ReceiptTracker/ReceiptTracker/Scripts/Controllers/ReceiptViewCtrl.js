@@ -41,26 +41,26 @@ app.controller("ReceiptView", function ($scope, $http) {
 
     viewModel.newReceiptPurpose = {};
     viewModel.errorMessage = "";
-    viewModel.isBusy = true;
+    viewModel.isBusy = false;
     viewModel.errorMessage = "";
 
 
 
     //calls the database to return the receipts
     function ReceiptView($scope, $http) {
-
+        viewModel.isBusy = true;
         $http.get("/api/receipts")
             .then(function (response) {
                 //Success
                 angular.copy(response.data, viewModel.receipts)
-
+                viewModel.isBusy = false;
             }, function (error) {
                 //Failure
                 viewModel.errorMessage = "Failed to load data: " + error;
             })
 
         .finally(function () {
-            viewModel.isBusy = false;
+           
         });
 
     }
