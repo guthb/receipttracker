@@ -1,11 +1,11 @@
-﻿<div ng-cloak>
-    <div class="row">
+﻿<div ng-cloak ng-app="ReceiptTracker" ng-controller="ReceiptView as viewModel">
+    <div class="row"   >
         <div>{{ "two plus two equals " + (2 + 2)}}</div>
 
-        <h1>{{title}}</h1>
+        <h1>{{viewModel.title}}</h1>
     </div>
 
-    <div class="scroll" ng-controller="ReceiptView as viewModel">
+    <div class="scroll"">
         <div class="text-danger" ng-show="viewModel.errorMessage">
             {{viewModel.errorMessage}}
         </div>
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="container">
                 <div class="col-sm-12 card" ng-repeat="receipt in receipts">
-                    <p class="receipt">{{receipt.Receipt}}</p>
+                   <p class="receipt">{{receipt.Receipt}}</p>
                     <p class="receipt">{{receipt.Retailer}}</p>
                     <p class="receipt">{{receipt.PurchaseDate | date: 'shortDate'}}</p>
                     <p>Purpose</p>

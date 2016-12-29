@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201612292155003_circularreferencereceiptuserandreceiptremoval.Designer.cs">
       <DependentUpon>201612292155003_circularreferencereceiptuserandreceiptremoval.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612292255127_addedvirtullistbacktousermodel.cs" />
+    <Compile Include="Migrations\201612292255127_addedvirtullistbacktousermodel.Designer.cs">
+      <DependentUpon>201612292255127_addedvirtullistbacktousermodel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -341,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612292155003_circularreferencereceiptuserandreceiptremoval.resx">
       <DependentUpon>201612292155003_circularreferencereceiptuserandreceiptremoval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612292255127_addedvirtullistbacktousermodel.resx">
+      <DependentUpon>201612292255127_addedvirtullistbacktousermodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

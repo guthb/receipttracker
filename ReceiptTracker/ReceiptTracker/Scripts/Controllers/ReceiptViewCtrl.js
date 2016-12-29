@@ -4,22 +4,22 @@
 angular.module("ReceiptTracker");
 app.controller("ReceiptView", function ($scope, $http) {
 
-
+    var viewModel = this;
+    viewModel.title = "Receipts";
     
     
     //reset any data already on the scope
-    $scope.newReceipt = {
-        ReceiptCapturedId: "x",
-        ReceiptType: "x",
-        Receipt: "xx",
-        Retailer: "x",
-        PurchaseDate: "xxxx",
-        S3BuckedId: "xx",
-        Purpose: "xx"
+    $scope.viewModel = {
+        ReceiptCapturedId: "",
+        ReceiptType: "",
+        Receipt: "",
+        Retailer: "",
+        PurchaseDate: "",
+        S3BuckedId: "",
+        Purpose: ""
     };
 
-    var viewModel = this;
-    viewModel.title = "Receipts";
+   
     
     viewModel.receipts = [];
     //viewModel.receipts = [{
@@ -45,26 +45,28 @@ app.controller("ReceiptView", function ($scope, $http) {
     viewModel.isBusy = false;
     viewModel.errorMessage = "";
 
-
+    console.log("in recieptview controller")
 
     //calls the database to return the receipts
-    function ReceiptView($scope, $http) {
+    //function ReceiptView($scope, $http) {
         viewModel.isBusy = true;
         $http.get("/api/receipt")
             .then(function (response) {
                 //Success
-                angular.copy(response.data, viewModel.receipts)
+                console.log("ressponsefromapi", response);
+                angular.copy(response.data, $scope.viewModel.receipts)
                 viewModel.isBusy = false;
             }, function (error) {
                 //Failure
                 viewModel.errorMessage = "Failed to load data: " + error;
+                
             })
 
         .finally(function () {
            
         });
 
-    }
+    //}
 
 
     //add or edit receipt for purpose
