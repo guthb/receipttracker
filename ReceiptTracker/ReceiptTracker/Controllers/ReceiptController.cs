@@ -51,9 +51,9 @@ namespace ReceiptTracker.Controllers
 
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]ReceiptModel purpose)
+        public void Put(int id, [FromBody]ReceiptModel value)
         {
-           // _repo.AddReceiptPurpose(id, purpose)
+            _repo.AddReceiptPurpose(id, value.ToString());
             
         }
 
