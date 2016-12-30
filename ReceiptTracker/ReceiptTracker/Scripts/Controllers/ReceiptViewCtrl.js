@@ -9,7 +9,7 @@ app.controller("ReceiptView", function ($scope, $http) {
     
     
     //reset any data already on the scope
-    $scope.viewModel = {
+    $scope.vmReceipts = {
         ReceiptCapturedId: "",
         ReceiptType: "",
         Receipt: "",
@@ -54,7 +54,7 @@ app.controller("ReceiptView", function ($scope, $http) {
             .then(function (response) {
                 //Success
                 console.log("ressponsefromapi", response);
-                angular.copy(response.data, $scope.viewModel.receipts)
+                viewModel.receipts =response.data
                 viewModel.isBusy = false;
             }, function (error) {
                 //Failure
