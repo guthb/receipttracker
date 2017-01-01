@@ -9,15 +9,15 @@ app.controller("ReceiptView", function ($scope, $http) {
     
     
     //reset any data already on the scope
-    $scope.vmReceipts = {
-        ReceiptCapturedId: "",
-        ReceiptType: "",
-        Receipt: "",
-        Retailer: "",
-        PurchaseDate: "",
-        S3BuckedId: "",
-        Purpose: ""
-    };
+    //$scope.vmReceipts = {
+    //    ReceiptCapturedId: "",
+    //    ReceiptType: "",
+    //    Receipt: "",
+    //    Retailer: "",
+    //    PurchaseDate: "",
+    //    S3BuckedId: "",
+    //    Purpose: ""
+    //};
 
    
     
@@ -40,12 +40,12 @@ app.controller("ReceiptView", function ($scope, $http) {
     //    Purpose: "something"
     //}];
 
-    viewModel.newReceiptPurpose = {};
+    //viewModel.newReceiptPurpose = {};
     viewModel.errorMessage = "";
     viewModel.isBusy = false;
     viewModel.errorMessage = "";
 
-    console.log("in recieptview controller")
+    console.log("in receiptview controller")
 
     //calls the database to return the receipts
     //function ReceiptView($scope, $http) {
@@ -58,34 +58,36 @@ app.controller("ReceiptView", function ($scope, $http) {
                 viewModel.isBusy = false;
             }, function (error) {
                 //Failure
-                viewModel.errorMessage = "Failed to load data: " + error;
-                
+                viewModel.errorMessage = "Failed to load data: " + error;          
             })
-
-        .finally(function () {
-           
+        .finally(function () {          
         });
 
     //}
 
 
     //add or edit receipt for purpose
-    viewModel.updatePurpose = function () {
+    viewModel.updatePurpose = function (id, newPurpose) {
         //viewModel.Purpose.push({ Purpose: viewModel.newReceiptPurpose})
         //viewModel.Purpose = {};
+        console.log("in update purpose function")
         viewModel.isBusy = true;
-        $http.post("/api/receipt", viewModel.newReceiptPurpose)
+        $http.post("/api/receipt/update",
+                    { "id" : id, "value" : newPurpose }
+                )
             .then(function (response) {
                 //Success
+                console.log("response from PUT api ", response)
                 viewModel.Purpose.push(response.data);
                 viewModel.newReceiptPurpose = {};
+                viewModel.isBusy = false;
             }, function (error) {
                 //Failure
                 viewModel.errorMessage = "Failed to save Purpose";
             })
 
         .finally(function () {
-            viewModel.isBusy = false;
+           
         });
 
     }

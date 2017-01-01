@@ -25,6 +25,7 @@ namespace ReceiptTracker.Controllers
 
         // GET api/<controller>
         [HttpGet]
+        
         public IEnumerable<ReceiptModel> Get()
         {
             //return new string[] { "value1", "value2" };
@@ -33,25 +34,33 @@ namespace ReceiptTracker.Controllers
         }
         
         // GET api/<controller>/5
+        
         public string Get(int id)
         {
             return "value";
+            //FindReceiptEntered
         }
 
         // POST api/<controller>
-        public HttpResponseMessage Post([FromBody]ReceiptModel value)
+        [HttpPost]
+        
+        public string Post(ReceiptModel newReceiptfromSES)
         {
-            if (_repo.AddReceipt(value) > 0)
+            ReceiptContext _db = new ReceiptContext();
+
+            if (_repo.AddReceipt( newReceiptfromSES) > 0)
             {
-                return Request.CreateResponse(HttpStatusCode.Created, value);
+                return HttpStatusCode.OK.ToString();
             }
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return HttpStatusCode.NotModified.ToString();
         }
 
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]ReceiptModel value)
+        [System.Web.Http.HttpPost]
+       [Route("api/receipt/update")]
+        public void Update(int id, string value)
         {
             _repo.AddReceiptPurpose(id, value.ToString());
             

@@ -20,8 +20,8 @@
                     <p class="receipt">{{receipt.retailer}}</p>
                     <p class="receipt">{{receipt.purchaseDate | date: 'shortDate'}}</p>
                     <div class="input-field">
-                        <input ng-required="true" required class="validate" type="text" placeholder="Purpose" ng-model="receipt.purpose" ng-submit="viewModel.updatePurpose()">
-                        <input type="submit" value="Add" class="btn btn-sm btn-success" ng-disabled="viewModel.receipts.Purpose.$invalid">
+                        <input ng-required="true" required class="validate" type="text" placeholder="Purpose" ng-model="receipt.purpose" >
+                        <input type="submit" value="Add" class="btn btn-sm btn-success" ng-disabled="viewModel.receipts.Purpose.$invalid" ng-click="viewModel.updatePurpose()">
                     </div>
                 </div>
             </div>
