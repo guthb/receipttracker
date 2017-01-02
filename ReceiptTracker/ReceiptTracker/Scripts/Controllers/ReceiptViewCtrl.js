@@ -45,7 +45,7 @@ app.controller("ReceiptView", function ($scope, $http) {
     viewModel.isBusy = false;
     viewModel.errorMessage = "";
 
-    console.log("in receiptview controller")
+    console.log("in receiptview controller");
 
     //calls the database to return the receipts
     //function ReceiptView($scope, $http) {
@@ -54,7 +54,7 @@ app.controller("ReceiptView", function ($scope, $http) {
             .then(function (response) {
                 //Success
                 console.log("ressponsefromapi", response);
-                viewModel.receipts =response.data
+                viewModel.receipts = response.data;
                 viewModel.isBusy = false;
             }, function (error) {
                 //Failure
@@ -67,29 +67,25 @@ app.controller("ReceiptView", function ($scope, $http) {
 
 
     //add or edit receipt for purpose
-    viewModel.updatePurpose = function (id, newPurpose) {
-        //viewModel.Purpose.push({ Purpose: viewModel.newReceiptPurpose})
-        //viewModel.Purpose = {};
-        console.log("in update purpose function")
-        viewModel.isBusy = true;
-        $http.post("/api/receipt/update",
-                    { "id" : id, "value" : newPurpose }
-                )
-            .then(function (response) {
-                //Success
-                console.log("response from PUT api ", response)
-                viewModel.Purpose.push(response.data);
-                viewModel.newReceiptPurpose = {};
-                viewModel.isBusy = false;
-            }, function (error) {
-                //Failure
-                viewModel.errorMessage = "Failed to save Purpose";
-            })
+        viewModel.updatePurpose = function (id, newPurpose) {
+            console.log("in update purpose function");
+            viewModel.isBusy = true;
+            $http.put("/api/putreceipt",
+                        { "id": id, "value": newPurpose }
+                    )
+                .then(function (response) {
+                    //Success
+                    console.log("response from PUT api ", response);
+                    viewModel.Purpose.push(response.data);
+                    viewModel.newReceiptPurpose = {};
+                    viewModel.isBusy = false;
+                }, function (error) {
+                    //Failure
+                    viewModel.errorMessage = "Failed to save Purpose";
+                })
 
-        .finally(function () {
-           
-        });
+            .finally(function () {
 
-    }
-
+            });
+        };
 });

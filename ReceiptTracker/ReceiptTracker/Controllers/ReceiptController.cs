@@ -8,7 +8,6 @@ using ReceiptTracker.Models;
 using System.Web.Http;
 
 
-
 namespace ReceiptTracker.Controllers
 {
     [Route("api/receipt")]
@@ -24,8 +23,7 @@ namespace ReceiptTracker.Controllers
 
 
         // GET api/<controller>
-        [HttpGet]
-        
+        [HttpGet]     
         public IEnumerable<ReceiptModel> Get()
         {
             //return new string[] { "value1", "value2" };
@@ -33,8 +31,7 @@ namespace ReceiptTracker.Controllers
             return receipts;
         }
         
-        // GET api/<controller>/5
-        
+        // GET api/<controller>/5       
         public string Get(int id)
         {
             return "value";
@@ -42,8 +39,7 @@ namespace ReceiptTracker.Controllers
         }
 
         // POST api/<controller>
-        [HttpPost]
-        
+        [HttpPost]       
         public string Post(ReceiptModel newReceiptfromSES)
         {
             ReceiptContext _db = new ReceiptContext();
@@ -58,13 +54,13 @@ namespace ReceiptTracker.Controllers
 
 
         // PUT api/<controller>/5
-        [System.Web.Http.HttpPost]
-       [Route("api/receipt/update")]
-        public void Update(int id, string value)
-        {
-            _repo.AddReceiptPurpose(id, value.ToString());
-            
-        }
+        //[HttpPut]        
+        //public HttpResponseMessage Put(int id, string value)
+        //{           
+        //    _repo.AddReceiptPurpose(id, value.ToString());
+        //    return new HttpResponseMessage(HttpStatusCode.OK);
+        //}
+
 
         // DELETE api/<controller>/5
         public void Delete(int id)
