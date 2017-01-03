@@ -13,17 +13,20 @@ namespace ReceiptTracker.Controllers
     {
 
         ReceiptRepository _repo = new ReceiptRepository();
+        
 
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            // return new string[] { "value1", "value2" };
+           return _repo.GetUserNames();
         }
 
         // GET api/<controller>/5
         public string Get(int id)
         {
-            return "value";
+            //return "value";
+            return _repo.FindUserById(id).ToString();           
         }
 
         // POST api/<controller>

@@ -27,6 +27,13 @@ namespace ReceiptTracker.DAL
             return Context.ReceiptUsers.Select(u => u.ReceiptUser.UserName.ToLower()).ToList();
         }
 
+
+        public UserModel FindUserById(int id)
+        {
+            UserModel found_user = Context.ReceiptUsers.FirstOrDefault(u => u.ReceiptUser.Id.ToString() == id.ToString());
+            return found_user;
+        }
+
         public bool UserNameExists(string v)
         {
             //throw new NotImplementedException();
@@ -69,8 +76,6 @@ namespace ReceiptTracker.DAL
             return Context.SaveChanges();
         }
 
-
-
         public void AddReceiptPurpose(int receiptId, string purpose)
         {
 
@@ -82,10 +87,6 @@ namespace ReceiptTracker.DAL
                 Context.SaveChanges();
                 return;
             }
-
-            //ReceiptModel _receipt_purpose = new ReceiptModel {Purpose = purpose };
-            //Context.Receipts.Add(_receipt_purpose);
-            //Context.SaveChanges();
 
             throw new Exception("Error! Receipt doesn't exist");
         }

@@ -70,9 +70,12 @@ app.controller("ReceiptView", function ($scope, $http) {
         viewModel.updatePurpose = function (id, newPurpose) {
             console.log("in update purpose function");
             viewModel.isBusy = true;
-            $http.put("/api/putreceipt",
-                        { "id": id, "value": newPurpose }
-                    )
+            $http.put("/api/update",
+                        {
+                            "id": id,
+                            "value": newPurpose
+                        }
+                      )
                 .then(function (response) {
                     //Success
                     console.log("response from PUT api ", response);
