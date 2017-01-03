@@ -13,9 +13,10 @@ namespace ReceiptTracker.Controllers
     {
 
         ReceiptRepository _repo = new ReceiptRepository();
-        
+
 
         // GET api/<controller>
+        [HttpGet]
         public IEnumerable<string> Get()
         {
             // return new string[] { "value1", "value2" };

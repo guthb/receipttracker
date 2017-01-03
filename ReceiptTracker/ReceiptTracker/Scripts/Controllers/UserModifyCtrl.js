@@ -22,16 +22,33 @@ app.controller("UserModify", function ($scope, $http) {
             //Success
             console.log("ressponsefromuserapi", response);
             uvm.user = response.data;
-            viewModel.isBusy = false;
+            uvm.isBusy = false;
         }, function (error) {
             //Failure
-            viewModel.errorMessage = "Failed to load data: " + error;
+            uvm.errorMessage = "Failed to load data: " + error;
         })
     .finally(function () {
-    });
+    })
 
     
+    //calls the database to delete account for the id of the user
+    uvn.deleteUser = function(id) {
+        uvm.isBusy = true;
+        $http.delete("/api/user", 
+                { 
+                    "id": id
+                }       
+            )
+            .then(function (response) {
+                // success
+                uvm.errorMessage = "User has been deleted, you will be logged out";
+                
+                uvm.isBusy = false;
 
+            }, function(error){
+                //failure
+                uvm.errorMessage = "Failed to delete user error is: " + error;
+            })
 
-
+    }
 })
