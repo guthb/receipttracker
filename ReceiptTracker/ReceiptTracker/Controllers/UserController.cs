@@ -8,10 +8,11 @@ using System.Web.Http;
 
 namespace ReceiptTracker.Controllers
 {
+    [Route("api/user")]
     public class UserController : ApiController
     {
 
-        ReceiptRepository Repo = new ReceiptRepository();
+        ReceiptRepository _repo = new ReceiptRepository();
 
         // GET api/<controller>
         public IEnumerable<string> Get()
@@ -36,8 +37,12 @@ namespace ReceiptTracker.Controllers
         }
 
         // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        //public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            _repo.RemoveUser(id);
+            return Json("User Removed Succefully!");
         }
     }
 }
