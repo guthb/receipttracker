@@ -202,7 +202,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReceiptController.cs" />
-    <Compile Include="Controllers\PutReceiptController.cs" />
+    <Compile Include="Controllers\UpdateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\ReceiptContext.cs" />
     <Compile Include="DAL\ReceiptRepository.cs" />
