@@ -27,7 +27,7 @@ namespace ReceiptTracker.Controllers
         public IEnumerable<ReceiptModel> Get()
         {
             //return new string[] { "value1", "value2" };
-            var receipts = _repo.GetReceipts().OrderByDescending(t => t.PurchaseDate).Take(5);
+            var receipts = _repo.GetReceipts().OrderByDescending(t => t.PurchaseDate).Take(10);
             return receipts;
         }
         
