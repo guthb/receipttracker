@@ -79,11 +79,11 @@ namespace ReceiptTracker.DAL
         public void AddReceiptPurpose(int receiptId, string purpose)
         {
 
-            ReceiptModel found_receipt = FindReceiptEntered(receiptId.ToString());
+            ReceiptModel found_receipt = FindReceiptEntered(receiptId);
             if (found_receipt != null)
             {
                 found_receipt.Purpose =  purpose ;
-                Context.Receipts.Add(found_receipt);
+                //Context.Receipts.Add(found_receipt);              
                 Context.SaveChanges();
                 return;
             }
@@ -94,7 +94,7 @@ namespace ReceiptTracker.DAL
         
         public ReceiptModel RemoveReceipt(int receiptId)
         {
-            ReceiptModel found_receipt = FindReceiptEntered(receiptId.ToString());
+            ReceiptModel found_receipt = FindReceiptEntered(receiptId);
             if (found_receipt != null)
             {
                 Context.Receipts.Remove(found_receipt);
@@ -107,9 +107,9 @@ namespace ReceiptTracker.DAL
             }
         }
 
-        public ReceiptModel FindReceiptEntered(string test_receipt)
+        public ReceiptModel FindReceiptEntered(int test_receipt_id)
         {
-            ReceiptModel found_receipt = Context.Receipts.FirstOrDefault(r => r.ReceiptCapturedId.ToString() == test_receipt.ToString());
+            ReceiptModel found_receipt = Context.Receipts.FirstOrDefault(r => r.ReceiptCapturedId == test_receipt_id);
             return found_receipt;
         }
 

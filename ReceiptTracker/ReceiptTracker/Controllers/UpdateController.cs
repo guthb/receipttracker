@@ -18,7 +18,7 @@ namespace ReceiptTracker.Controllers
         public string purpose { get; set; }
     }
     
-    [Route("api/update/{id, value}")]
+    [Route("api/update/")]
     //public class UpdateController : Controller  //(mvc)
     public class UpdateController : ApiController
     {
@@ -27,15 +27,31 @@ namespace ReceiptTracker.Controllers
         
         // PUT api/<controller>/5
         [HttpPut]
-        //public void PutReceipt(int id, string value) //(mvc)
-        public IHttpActionResult put(int id, string value)
+        //public void PutReceipt(int id, string value) //(mvc)        
         //public string put([FromUri] int id, string value)
+        //public IHttpActionResult Put(int id, string value)
+        public IHttpActionResult Put(Purpose p)
         {
-            _repo.AddReceiptPurpose(id, value.ToString());
+            _repo.AddReceiptPurpose(p.id, p.purpose);
 
             return Json("Purpose added successfully!");
-            //return new HttpResponseMessage(HttpStatusCode.OK).ToString();
+            //return 
         }
+
+
+        // DELETE api/<controller>/5
+        [HttpDelete]
+        [AcceptVerbs("delete")]
+        //public HttpResponseMessage Delete(int id)
+        public IHttpActionResult Delete(int id)
+        {
+            _repo.RemoveReceipt(id);
+
+            //return new HttpResponseMessage(HttpStatusCode.NoContent); //204
+            return Json("receipt removed");
+        }
+
+
 
 
     }

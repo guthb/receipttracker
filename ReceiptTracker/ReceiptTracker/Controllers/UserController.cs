@@ -41,12 +41,12 @@ namespace ReceiptTracker.Controllers
         }
 
         // DELETE api/<controller>/5
-        [HttpDelete]
+        [HttpPost]
         //public void Delete(int id)
-        public IHttpActionResult Delete(int id)
+        public HttpResponseMessage Post(int id)
         {
             _repo.RemoveUser(id);
-            return Json("User Removed Succefully!");
+            return new HttpResponseMessage(HttpStatusCode.NoContent);
         }
     }
 }

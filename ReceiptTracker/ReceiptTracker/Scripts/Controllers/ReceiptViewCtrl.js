@@ -73,7 +73,7 @@ app.controller("ReceiptView", function ($scope, $http) {
             $http.put("/api/update",
                         {
                             "id": id,
-                            "value": newPurpose
+                            "purpose": newPurpose
                         }
                       )
                 .then(function (response) {
@@ -84,7 +84,7 @@ app.controller("ReceiptView", function ($scope, $http) {
                     viewModel.isBusy = false;
                 }, function (error) {
                     //Failure
-                    viewModel.errorMessage = "Failed to save Purpose";
+                    viewModel.errorMessage = "Failed to save Purpose " + error;
                 })
 
             .finally(function () {

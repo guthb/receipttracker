@@ -16,7 +16,7 @@ app.controller("UserModify", function ($scope, $http) {
     console.log("in user modify controller");
 
     //calls the database to return the user
-    uvm.isBusy = true;
+    uvm.isBusy = true;  //user view model
     $http.get("/api/user")
         .then(function (response) {
             //Success

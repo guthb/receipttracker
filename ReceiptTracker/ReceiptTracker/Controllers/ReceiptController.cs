@@ -58,17 +58,17 @@ namespace ReceiptTracker.Controllers
         public HttpResponseMessage Put(int id, [FromBody]string value)
         {
             _repo.AddReceiptPurpose(id, value.ToString());
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return new HttpResponseMessage(HttpStatusCode.OK); //200
         }
 
 
         // DELETE api/<controller>/5
         [HttpDelete]
-        public IHttpActionResult Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
             _repo.RemoveReceipt(id);
 
-            return Json("Receipt Removed Succefully!");
+            return new HttpResponseMessage(HttpStatusCode.NoContent); //204
         }
     }
 }
