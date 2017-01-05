@@ -1,9 +1,15 @@
-﻿<div ng-cloak ng-app="ReceiptTracker" ng-controller="ReceiptView as viewModel">
-    <div class="row"   >
+﻿@using Microsoft.AspNet.Identity
+
+<script type="text/javascript">
+    var user = @Html.Raw("'"+ User.Identity.GetUserName()+"'");
+</script>
+
+<div ng-cloak ng-app="ReceiptTracker" ng-controller="ReceiptView as viewModel" ng-init="init(user)">
+    <div class="row">
         @*<div>{{ "two plus two equals " + (2 + 2)}}</div>*@
         <h1 class="text-center">{{viewModel.title}}</h1>
     </div>
-    <div class="scroll"">
+    <div class="scroll" ">
         <div class="text-danger" ng-show="viewModel.errorMessage">
             {{viewModel.errorMessage}}
         </div>
@@ -11,20 +17,21 @@
             <i class="fa fa-spinner fa-spin"></i>
             Loading...
         </div>
-        <div id="receiptCard" class="row" >
+        <div id="receiptCard" class="row">
             <div class="col-sm-11 col-sm-offset-1">
                 <div class="container">
-                    <div class="col-sm-3 col-sm-offset-2 card" ng-repeat="receipt in viewModel.receipts" 
+                    <div class="col-sm-3 col-sm-offset-2 card" ng-repeat="receipt in viewModel.receipts"
                          style="border: 2px solid black;
                          margin-bottom: 10px;
                          padding-bottom: 5px;
-                         padding-top: 5px";>
+                         padding-top: 5px" ;>
                         <p class="receipt text-center">{{receipt.receipt}}</p>
                         <p class="receipt text-center">{{receipt.retailer}}</p>
                         <p class="receipt text-center">{{receipt.purchaseDate | date: 'shortDate'}}</p>
                         <div class="input-field text-center">
                             <input ng-required="true" required class="validate" type="text" placeholder="Purpose" ng-model="receipt.purpose">
-                            <input type="submit" value="Add" class="btn btn-sm btn-success" ng-disabled="viewModel.receipts.Purpose.$invalid" ng-click="viewModel.updatePurpose()">
+                            <input type="submit" value="Add" class="btn btn-sm btn-success" ng-disabled="viewModel.receipts.Purpose.$invalid"
+                                   ng-click="viewModel.updatePurpose(receipt.receiptCapturedId,receipt.purpose)">
                         </div>
                     </div>
                 </div>
