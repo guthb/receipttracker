@@ -15,31 +15,30 @@ namespace ReceiptTracker.Controllers
     {
 
         ReceiptRepository _repo = new ReceiptRepository();
-        //private ReceiptRepository _repo;
-        //public ReceiptController(ReceiptRepository repo)
-        //{
-        //    _repo = repo;
-        //}
-
+ 
 
         // GET api/<controller>
-        [HttpGet]     
-        public IEnumerable<ReceiptModel> Get(string user)
+        [HttpGet]
+        [Route("api/receipt/user/{user}")]
+        public string Get(string user)
+        //public IEnumerable<ReceiptModel> Get()
         {
             //return new string[] { "value1", "value2" };
-            var receipts = _repo.GetReceipts().OrderByDescending(t => t.PurchaseDate).Take(10);
-            return receipts;
+            //var receipts = _repo.GetReceipts().OrderByDescending(t => t.PurchaseDate).Take(10);
+            var receipts = _repo.GetReceiptsForUserName(user);
+            return receipts.ToString();
+
         }
         
         // GET api/<controller>/5       
-        public string Get(int id)
-        {
-            return "value";
-            //FindReceiptEntered
-        }
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //    //FindReceiptEntered
+        //}
 
         // POST api/<controller>
-        [HttpPost]       
+        //[HttpPost]       
         public string Post(ReceiptModel newReceiptfromSES)
         {
             ReceiptContext _db = new ReceiptContext();
@@ -54,7 +53,7 @@ namespace ReceiptTracker.Controllers
 
 
         // PUT api/<controller>/5
-        [HttpPut]        
+                
         public HttpResponseMessage Put(int id, [FromBody]string value)
         {
             _repo.AddReceiptPurpose(id, value.ToString());
@@ -63,7 +62,7 @@ namespace ReceiptTracker.Controllers
 
 
         // DELETE api/<controller>/5
-        [HttpDelete]
+        
         public HttpResponseMessage Delete(int id)
         {
             _repo.RemoveReceipt(id);

@@ -64,11 +64,25 @@ namespace ReceiptTracker.DAL
             return foundUser;
         }
 
+        //GET to retrun all recipts in database
         public List<ReceiptModel> GetReceipts()
         {
             
             return Context.Receipts.ToList();
         }
+
+
+        //username is passed in
+        public List<ReceiptModel> GetReceiptsForUserName(string user)
+        
+        {
+            var found_receipts = Context.Receipts.Where(x => x.ReceiptUser.ReceiptUser.UserName == user).ToList();
+
+            return found_receipts;
+        }
+
+      
+
 
         public int AddReceipt(ReceiptModel receiptFromSES)
         {

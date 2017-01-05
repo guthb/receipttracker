@@ -24,7 +24,9 @@ app.controller("ReceiptView", function ($scope, $http) {
     //calls the database to return the receipts
     
     viewModel.isBusy = true;
-    $http.get("/api/receipt", {params:{ "user" : viewModel.User}})
+    //$http.get("/api/receipt/user", {params:{ "user" : viewModel.User}})
+    console.log ("user from viewmodel ", viewModel.User )
+    $http.get("/api/receipt/user/" + viewModel.User)
             .then(function (response) {
                 //Success
                 console.log("ressponsefromapi", response);
@@ -32,6 +34,7 @@ app.controller("ReceiptView", function ($scope, $http) {
                 viewModel.isBusy = false;
             }, function (error) {
                 //Failure
+                console.log("ressponsefromgetapifailure", response);
                 viewModel.errorMessage = "Failed to load data: " + error;          
             })
         .finally(function () {          
