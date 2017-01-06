@@ -27,6 +27,20 @@ namespace ReceiptTracker.DAL
             return Context.ReceiptUsers.Select(u => u.ReceiptUser.UserName.ToLower()).ToList();
         }
 
+
+        public UserModel FindUserById(int id)
+        {
+            UserModel found_user = Context.ReceiptUsers.FirstOrDefault(u => u.ReceiptUser.Id.ToString() == id.ToString());
+            return found_user;
+        }
+
+        public UserModel FindUserByAppName(string appEmail)
+        {
+            UserModel found_user = Context.ReceiptUsers.FirstOrDefault(u => u.ReceiptUser.ReceiptUser.AppEmail.ToLower() == appEmail.ToLower());
+            return found_user;
+        }
+
+
         public bool UserNameExists(string v)
         {
             //throw new NotImplementedException();
@@ -40,13 +54,13 @@ namespace ReceiptTracker.DAL
 
         public UserModel UserNameExistsofUserModel(string v)
         {
-            //throw new NotImplementedException();
+           
             return Context.ReceiptUsers.FirstOrDefault(u => u.ReceiptUser.UserName.ToLower() == v.ToLower());
         }
 
         public UserModel RemoveUser(int userId)
         {
-            //throw new NotImplementedException();
+           
 
             UserModel foundUser = Context.ReceiptUsers.FirstOrDefault(u => u.UserId == userId);
             if (foundUser != null)
@@ -57,34 +71,43 @@ namespace ReceiptTracker.DAL
             return foundUser;
         }
 
+        //GET to return all recipts in database
         public List<ReceiptModel> GetReceipts()
         {
             
             return Context.Receipts.ToList();
         }
 
-        public void AddReceipt(ReceiptModel receiptFromSES)
+
+        //username is passed in
+        public List<ReceiptModel> GetReceiptsForUserName(string user)
+        
         {
-            Context.Receipts.Add(receiptFromSES);
-            Context.SaveChanges();
+            var found_receipts = Context.Receipts.Where(x => x.ReceiptUser.ReceiptUser.UserName == user).ToList();
+
+            return found_receipts;
         }
 
+      
+
+
+        public int AddReceipt(ReceiptModel receiptFromSES)
+        {
+            Context.Receipts.Add(receiptFromSES);
+            return Context.SaveChanges();
+        }
 
         public void AddReceiptPurpose(int receiptId, string purpose)
         {
 
-            ReceiptModel found_receipt = FindReceiptEntered(receiptId.ToString());
+            ReceiptModel found_receipt = FindReceiptEntered(receiptId);
             if (found_receipt != null)
             {
                 found_receipt.Purpose =  purpose ;
-                Context.Receipts.Add(found_receipt);
+                //Context.Receipts.Add(found_receipt);              
                 Context.SaveChanges();
                 return;
             }
-
-            //ReceiptModel _receipt_purpose = new ReceiptModel {Purpose = purpose };
-            //Context.Receipts.Add(_receipt_purpose);
-            //Context.SaveChanges();
 
             throw new Exception("Error! Receipt doesn't exist");
         }
@@ -92,7 +115,7 @@ namespace ReceiptTracker.DAL
         
         public ReceiptModel RemoveReceipt(int receiptId)
         {
-            ReceiptModel found_receipt = FindReceiptEntered(receiptId.ToString());
+            ReceiptModel found_receipt = FindReceiptEntered(receiptId);
             if (found_receipt != null)
             {
                 Context.Receipts.Remove(found_receipt);
@@ -105,9 +128,9 @@ namespace ReceiptTracker.DAL
             }
         }
 
-        public ReceiptModel FindReceiptEntered(string test_receipt)
+        public ReceiptModel FindReceiptEntered(int test_receipt_id)
         {
-            ReceiptModel found_receipt = Context.Receipts.FirstOrDefault(r => r.ReceiptCapturedId.ToString() == test_receipt.ToString());
+            ReceiptModel found_receipt = Context.Receipts.FirstOrDefault(r => r.ReceiptCapturedId == test_receipt_id);
             return found_receipt;
         }
 

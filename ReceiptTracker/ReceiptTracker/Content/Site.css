@@ -1,6 +1,10 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 390px;
+    /*background-image: url(../Content/receiptBackground.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity:0.2*/
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -23,7 +27,7 @@ textarea {
     max-width: 280px;
 }
 
-/* recipt login form*/
+/* receipt login form*/
 .form-signin {
     max-width: 330px;
     padding: 15px;
@@ -100,4 +104,8 @@ textarea {
 .m0d-left-border-none {
   border-left:none !important;
   box-shadow: inset 0px 1px 0 rgba(0,0,0,.075);
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }

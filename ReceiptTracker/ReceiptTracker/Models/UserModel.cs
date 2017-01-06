@@ -16,6 +16,6 @@ namespace ReceiptTracker.Models
         public string AppEmail { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public virtual List<ReceiptModel> Receipts { get; set; }
+        //public virtual List<ReceiptModel> Receipts { get; set; } this breaks my api for Getting Receipts
     }
 }

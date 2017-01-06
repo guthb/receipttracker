@@ -71,6 +71,10 @@
       <HintPath>..\packages\Moq.4.5.28\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -134,9 +138,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -197,9 +198,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
+    <Compile Include="Controllers\DeleteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReceiptController.cs" />
+    <Compile Include="Controllers\UpdateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\ReceiptContext.cs" />
     <Compile Include="DAL\ReceiptRepository.cs" />
@@ -217,6 +221,14 @@
     <Compile Include="Migrations\201612212318459_CustomerTestData.cs" />
     <Compile Include="Migrations\201612212318459_CustomerTestData.Designer.cs">
       <DependentUpon>201612212318459_CustomerTestData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612292155003_circularreferencereceiptuserandreceiptremoval.cs" />
+    <Compile Include="Migrations\201612292155003_circularreferencereceiptuserandreceiptremoval.Designer.cs">
+      <DependentUpon>201612292155003_circularreferencereceiptuserandreceiptremoval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612292255127_addedvirtullistbacktousermodel.cs" />
+    <Compile Include="Migrations\201612292255127_addedvirtullistbacktousermodel.Designer.cs">
+      <DependentUpon>201612292255127_addedvirtullistbacktousermodel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -238,6 +250,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app.js" />
@@ -249,7 +263,14 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <None Include="Properties\PublishProfiles\ReceiptTracker20170105061154 - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\ReceiptTracker20170105061154 - Web Deploy %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\ReceiptTracker20170105061154 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\ReceiptTracker20170105062952 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Controllers\HomeIndexCtrl.js" />
+    <Content Include="Scripts\Controllers\UserModifyCtrl.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -300,6 +321,7 @@
     <Content Include="Views\Application\Index.cshtml" />
     <Content Include="Views\Manage\ModifyUser.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Home\IndexNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -327,6 +349,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612212318459_CustomerTestData.resx">
       <DependentUpon>201612212318459_CustomerTestData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612292155003_circularreferencereceiptuserandreceiptremoval.resx">
+      <DependentUpon>201612292155003_circularreferencereceiptuserandreceiptremoval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612292255127_addedvirtullistbacktousermodel.resx">
+      <DependentUpon>201612292255127_addedvirtullistbacktousermodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

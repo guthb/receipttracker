@@ -1,90 +1,73 @@
-﻿'use strict';
+﻿//ReceiptViewCtrl.js
+'use strict';
 
-
-app.controller("ReceiptView", function ($scope, $http, $rootScope) {
-
-
-    $scope.title = "Receipts";
-    $scope.display = [];
-    $rootscope.selecteReciept = {};
-    $rootscope.EditMode = false;
-
-    $scope.newReceipt = {
-        ReceiptCapturedId: "",
-        ReceiptType: "",
-        Receipt: "",
-        Retailer: "",
-        PurchaseDate: "",
-        S3BuckedId: "",
-        Purpose: ""
-    };
+angular.module("ReceiptTracker");
+app.controller("ReceiptView", function ($scope, $http) {
 
     var viewModel = this;
+    viewModel.title = "Receipts";
+    viewModel.User = null;
+    
+    viewModel.init = function (user) {
+        console.log("user before set", user)
+        viewModel.User = user;
+        console.log("viewModel after set", viewModel.User)
+    }
+
     viewModel.receipts = [];
-    //viewModel.receipts = [{
-    //    ReceiptCapturedId: "1",
-    //    ReceiptType: "url",
-    //    Receipt: "somthing",
-    //    Retailer: "lowes",
-    //    PurchaseDate: Date.now,
-    //    S3BuckedId: "rrrrrrrrrr",
-    //    Purpose: "nothing"
-    //}, {
-    //    ReceiptCapturedId: "2",
-    //    ReceiptType: "html",
-    //    Receipt: "somthing2",
-    //    Retailer: "homedepot",
-    //    PurchaseDate: Date.now,
-    //    S3BuckedId: "sssssssss",
-    //    Purpose: "something"
-    //}];
+    
 
-    viewModel.newReceiptPurpose = {};
     viewModel.errorMessage = "";
-    viewModel.isBusy = true;
+    viewModel.isBusy = false;
     viewModel.errorMessage = "";
 
-
+    console.log("in receiptview controller");
 
     //calls the database to return the receipts
-    function ReceiptView($http) {
-
-        $http.get("/api/receipts")
+    
+    viewModel.isBusy = true;
+    //$http.get("/api/receipt/user", {params:{ "user" : viewModel.User}})
+    console.log ("user from viewmodel ", viewModel.User )
+    $http.get("/api/receipt/user/" + viewModel.User)
             .then(function (response) {
                 //Success
-                angular.copy(response.data, viewModel.receipts)
-
+                console.log("ressponsefromapi", response);
+                viewModel.receipts = response.data;
+                viewModel.isBusy = false;
             }, function (error) {
                 //Failure
-                viewModel.errorMessage = "Failed to load data: " + error;
+                console.log("ressponsefromgetapifailure", response);
+                viewModel.errorMessage = "Failed to load data: " + error;          
             })
-
-        .finally(function () {
-            viewModel.isBusy = false;
+        .finally(function () {          
         });
 
-    }
+ 
 
 
     //add or edit receipt for purpose
-    viewModel.updatePurpose = function () {
-        //viewModel.Purpose.push({ Purpose: viewModel.newReceiptPurpose})
-        //viewModel.Purpose = {};
-        viewModel.isBusy = true;
-        $http.post("/api/receipts", viewModel.newReceiptPurpose)
-            .then(function (response) {
-                //Success
-                viewModel.Purpose.push(response.data);
-                viewModel.newReceiptPurpose = {};
-            }, function (error) {
-                //Failure
-                viewModel.errorMessage = "Failed to save Purpose";
-            })
+        viewModel.updatePurpose = function (id, newPurpose) {
+            console.log("in update purpose function");
+            viewModel.isBusy = true;
+            $http.put("/api/update",
+                        {
+                            "id": id,
+                            "purpose": newPurpose
+                        }
+                      )
+                .then(function (response) {
+                    //Success
+                    viewModel.isBusy = false;
+                    console.log("response from PUT api ", response);
+                   
+                }, function (error) {
+                    //Failure
+                    viewModel.errorMessage = "Failed to save Purpose " + error;
+                    viewModel.isBusy = false;
+                })
 
-        .finally(function () {
-            viewModel.isBusy = false;
-        });
-
-    }
-
+            .finally(function () {
+                viewModel.isBusy = false;
+            });
+        };
 });

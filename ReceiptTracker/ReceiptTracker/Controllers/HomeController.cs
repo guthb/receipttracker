@@ -10,7 +10,13 @@ namespace ReceiptTracker.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return Redirect("/Application/Index");
+            } else
+            { 
+                return View();
+            }
         }
 
         public ActionResult About()

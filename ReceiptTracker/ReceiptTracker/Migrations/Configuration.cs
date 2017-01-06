@@ -32,24 +32,64 @@ namespace ReceiptTracker.Migrations
             //    System.Diagnostics.Debugger.Launch();
             //}
 
+            var ApplicationUser = new ApplicationUser()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Email = "carl@test.com",
+                SecurityStamp = Guid.NewGuid().ToString(),
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                EmailConfirmed = true,
+                LockoutEnabled = true,
+                AccessFailedCount = 0,
+                UserName = "carl@test.com",
+                //ReceiptUser = new UserModel() { UserId = 1, AppEmail = "John.Doe@guthb.com", FirstName = "John", LastName = "Doe" }
 
-            context.Users.AddOrUpdate(u => u.Id,
+            };
 
-                new ApplicationUser()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Email = "guppy96@gmail.com",
-                    SecurityStamp = Guid.NewGuid().ToString(),
-                    PhoneNumberConfirmed = false,
-                    TwoFactorEnabled = false,
-                    EmailConfirmed = true,
-                    LockoutEnabled = true,
-                    AccessFailedCount =0,
-                    UserName = "guppy96@gmail.com",
-                    ReceiptUser = new UserModel() { UserId = 1, AppEmail = "John.Doe@guthb.com", FirstName = "John", LastName = "Doe" }
-                }
+            var _ReceiptUser = new UserModel() { UserId = 1, AppEmail = "John.Doe@guthb.com", FirstName = "John", LastName = "Doe", ReceiptUser = ApplicationUser };
 
-            );
+            ApplicationUser.ReceiptUser = _ReceiptUser;
+
+            context.Users.AddOrUpdate(u => u.Email, ApplicationUser);
+
+            //context.Users.AddOrUpdate(u => u.Id,
+
+            //    new ApplicationUser()
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        Email = "guppy96@gmail.com",
+            //        SecurityStamp = Guid.NewGuid().ToString(),
+            //        PhoneNumberConfirmed = false,
+            //        TwoFactorEnabled = false,
+            //        EmailConfirmed = true,
+            //        LockoutEnabled = true,
+            //        AccessFailedCount = 0,
+            //        UserName = "guppy96@gmail.com",
+            //        ReceiptUser = new UserModel() { UserId = 1, AppEmail = "John.Doe@guthb.com", FirstName = "John", LastName = "Doe" }
+
+            //    }
+
+            //);
+
+            //context.ReceiptUsers.AddOrUpdate(r => r.UserId,
+            //    new UserModel() { UserId = 1, AppEmail = "John.Doe@guthb.com",
+            //        FirstName = "John",
+            //        LastName = "Doe",
+            //        ReceiptUser = new ApplicationUser()
+            //        {
+            //            Id = Guid.NewGuid().ToString(),
+            //            Email = "guppy96@gmail.com",
+            //            SecurityStamp = Guid.NewGuid().ToString(),
+            //            PhoneNumberConfirmed = false,
+            //            TwoFactorEnabled = false,
+            //            EmailConfirmed = true,
+            //            LockoutEnabled = true,
+            //            AccessFailedCount = 0,
+            //            UserName = "guppy96@gmail.com",
+            //        }
+            //    });
+
 
             //context.ReceiptUsers.AddOrUpdate(u => u.UserId,
 
@@ -62,9 +102,9 @@ namespace ReceiptTracker.Migrations
             //);
 
             context.Receipts.AddOrUpdate(r => r.ReceiptCapturedId,
-                new ReceiptModel() { UserId = 1, ReceiptCapturedId = 1, ReceiptType = "pdf", Receipt = "pdf", Retailer = "HOME DEPOT", PurchaseDate = new DateTime(2016, 12, 01), S3BuckedId = "1", Purpose = "Fun" },
-                new ReceiptModel() { UserId = 1, ReceiptCapturedId = 2, ReceiptType = "url", Receipt = "url", Retailer = "WAL-MART", PurchaseDate = new DateTime(2016, 12, 02), S3BuckedId = "1", Purpose = "Party" },
-                new ReceiptModel() { UserId = 1, ReceiptCapturedId = 3, ReceiptType = "html", Receipt = "html", Retailer = "KROGER", PurchaseDate = new DateTime(2016, 12, 03), S3BuckedId = "1", Purpose = "Car" }
+                new ReceiptModel() { UserId = 5, ReceiptCapturedId = 1, ReceiptType = "pdf", Receipt = "pdf", Retailer = "HOME DEPOT", PurchaseDate = new DateTime(2016, 12, 01), S3BuckedId = "1", Purpose = "Fun" },
+                new ReceiptModel() { UserId = 5, ReceiptCapturedId = 2, ReceiptType = "url", Receipt = "url", Retailer = "WAL-MART", PurchaseDate = new DateTime(2016, 12, 02), S3BuckedId = "1", Purpose = "Party" },
+                new ReceiptModel() { UserId = 5, ReceiptCapturedId = 3, ReceiptType = "html", Receipt = "html", Retailer = "KROGER", PurchaseDate = new DateTime(2016, 12, 03), S3BuckedId = "1", Purpose = "Car" }
             //new ReceiptModel() { ReceiptCapturedId = 4, ReceiptType = "pdf", Receipt = "pdf", Retailer = "STARBUCKS", PurchaseDate = new DateTime(2016, 12, 04), S3BuckedId = "2", Purpose = "" },
             //new ReceiptModel() { ReceiptCapturedId = 5, ReceiptType = "url", Receipt = "url", Retailer = "SHELL", PurchaseDate = new DateTime(2016, 12, 05), S3BuckedId = "2", Purpose = "" },
             //new ReceiptModel() { ReceiptCapturedId = 6, ReceiptType = "html", Receipt = "html", Retailer = "MAPCO", PurchaseDate = new DateTime(2016, 12, 06), S3BuckedId = "2", Purpose = "" },

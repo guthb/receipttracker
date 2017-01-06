@@ -206,3 +206,7 @@ project.lock.json
 project.fragment.lock.json
 artifacts/
 **/Properties/launchSettings.json
+
+# npm packages for email parser
+/Parser/node_modules/
+

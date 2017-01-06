@@ -158,6 +158,7 @@ namespace ReceiptTracker.Controllers
                 user.ReceiptUser = new UserModel { AppEmail = _appEmail, FirstName = model.FirstName, LastName = model.LastName  };
                 
 
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

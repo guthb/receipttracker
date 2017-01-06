@@ -13,19 +13,19 @@ namespace ReceiptTracker.DAL
         public virtual DbSet<ReceiptModel> Receipts { get; set; }
         public virtual DbSet<UserModel> ReceiptUsers { get; set; }
 
-        //public override int SaveChanges()
-        //{
-        //    try
-        //    {
-        //        return base.SaveChanges();
-        //    }
-        //    catch (DbEntityValidationException ex)
-        //    {
-        //        throw new Exception();
-        //    }
+        public override int SaveChanges()
+        {
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                throw new Exception(ex.EntityValidationErrors.First().ValidationErrors.First().ErrorMessage);
+            }
 
 
-        //}
+        }
 
 
 
