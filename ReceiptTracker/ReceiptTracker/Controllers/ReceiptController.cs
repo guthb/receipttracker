@@ -26,11 +26,18 @@ namespace ReceiptTracker.Controllers
         //public string Get(string user)
         public IEnumerable<ReceiptModel> Get(string user)
         {
-            user = User.Identity.GetUserName();
+            IEnumerable<ReceiptModel> receipts = null;
+            try
+            {
+                user = User.Identity.GetUserName();
 
-            //return new string[] { "value1", "value2" };
-            //var receipts = _repo.GetReceipts().OrderByDescending(t => t.PurchaseDate).Take(10);
-            var receipts = _repo.GetReceiptsForUserName(user);
+                //return new string[] { "value1", "value2" };
+                //var receipts = _repo.GetReceipts().OrderByDescending(t => t.PurchaseDate).Take(10);
+                receipts = _repo.GetReceiptsForUserName(user);
+            } catch (Exception exp)
+            {
+                Console.Write(exp.Message);
+            }
             return receipts;
 
         }
@@ -47,12 +54,16 @@ namespace ReceiptTracker.Controllers
         public string Post(ReceiptModel newReceiptfromSES)
         {
             ReceiptContext _db = new ReceiptContext();
-
-            if (_repo.AddReceipt( newReceiptfromSES) > 0)
+            try
             {
-                return HttpStatusCode.OK.ToString();
+                if (_repo.AddReceipt(newReceiptfromSES) > 0)
+                {
+                    return HttpStatusCode.OK.ToString();
+                }
+            } catch (Exception exp)
+            {
+                Console.Write("Post controller", exp.Message);
             }
-
             return HttpStatusCode.NotModified.ToString();
         }
 

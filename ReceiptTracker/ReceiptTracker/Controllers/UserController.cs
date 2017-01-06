@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using ReceiptTracker.DAL;
 using System.Web.Http;
+using ReceiptTracker.Models;
 
 namespace ReceiptTracker.Controllers
 {
@@ -30,6 +31,19 @@ namespace ReceiptTracker.Controllers
             return _repo.FindUserById(id).ToString();           
         }
 
+        //GET api/<controller/
+        [HttpGet]
+        [Route("api/user/{user}")]
+
+        //public string Get(string user)
+        public UserModel Get(string user)
+        {
+            string real_email = user.Replace('_', '.') + "@guthb.com";
+            return _repo.FindUserByAppName(real_email);
+        }
+
+
+       
         // POST api/<controller>
         public void Post([FromBody]string value)
         {

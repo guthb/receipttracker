@@ -264,6 +264,10 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Scripts\angular-route.min.js.map" />
+    <None Include="Properties\PublishProfiles\ReceiptTracker20170105061154 - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\ReceiptTracker20170105061154 - Web Deploy %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\ReceiptTracker20170105061154 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\ReceiptTracker20170105062952 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Controllers\HomeIndexCtrl.js" />
     <Content Include="Scripts\Controllers\UserModifyCtrl.js" />

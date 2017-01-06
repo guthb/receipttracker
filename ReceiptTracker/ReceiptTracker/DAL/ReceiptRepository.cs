@@ -34,6 +34,13 @@ namespace ReceiptTracker.DAL
             return found_user;
         }
 
+        public UserModel FindUserByAppName(string appEmail)
+        {
+            UserModel found_user = Context.ReceiptUsers.FirstOrDefault(u => u.ReceiptUser.ReceiptUser.AppEmail.ToLower() == appEmail.ToLower());
+            return found_user;
+        }
+
+
         public bool UserNameExists(string v)
         {
             //throw new NotImplementedException();
