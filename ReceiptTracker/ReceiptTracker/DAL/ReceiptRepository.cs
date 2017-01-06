@@ -47,13 +47,13 @@ namespace ReceiptTracker.DAL
 
         public UserModel UserNameExistsofUserModel(string v)
         {
-            //throw new NotImplementedException();
+           
             return Context.ReceiptUsers.FirstOrDefault(u => u.ReceiptUser.UserName.ToLower() == v.ToLower());
         }
 
         public UserModel RemoveUser(int userId)
         {
-            //throw new NotImplementedException();
+           
 
             UserModel foundUser = Context.ReceiptUsers.FirstOrDefault(u => u.UserId == userId);
             if (foundUser != null)
@@ -64,7 +64,7 @@ namespace ReceiptTracker.DAL
             return foundUser;
         }
 
-        //GET to retrun all recipts in database
+        //GET to return all recipts in database
         public List<ReceiptModel> GetReceipts()
         {
             

@@ -8,8 +8,10 @@ app.controller("ReceiptView", function ($scope, $http) {
     viewModel.title = "Receipts";
     viewModel.User = null;
     
-    $scope.init = function (user) {
+    viewModel.init = function (user) {
+        console.log("user before set", user)
         viewModel.User = user;
+        console.log("viewModel after set", viewModel.User)
     }
 
     viewModel.receipts = [];

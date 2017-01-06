@@ -6,10 +6,12 @@ using System.Net.Http;
 using ReceiptTracker.DAL;
 using ReceiptTracker.Models;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 
 namespace ReceiptTracker.Controllers
 {
+    
     [Route("api/receipt")]
     public class ReceiptController : ApiController
     {
@@ -20,13 +22,16 @@ namespace ReceiptTracker.Controllers
         // GET api/<controller>
         [HttpGet]
         [Route("api/receipt/user/{user}")]
-        public string Get(string user)
-        //public IEnumerable<ReceiptModel> Get()
+        
+        //public string Get(string user)
+        public IEnumerable<ReceiptModel> Get(string user)
         {
+            user = User.Identity.GetUserName();
+
             //return new string[] { "value1", "value2" };
             //var receipts = _repo.GetReceipts().OrderByDescending(t => t.PurchaseDate).Take(10);
             var receipts = _repo.GetReceiptsForUserName(user);
-            return receipts.ToString();
+            return receipts;
 
         }
         
@@ -53,7 +58,7 @@ namespace ReceiptTracker.Controllers
 
 
         // PUT api/<controller>/5
-                
+        [Authorize]        
         public HttpResponseMessage Put(int id, [FromBody]string value)
         {
             _repo.AddReceiptPurpose(id, value.ToString());

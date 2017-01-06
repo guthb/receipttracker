@@ -2,7 +2,10 @@
 
 <script type="text/javascript">
     var user = @Html.Raw("'"+ User.Identity.GetUserName()+"'");
+    console.log("inittest", user)
 </script>
+
+
 
 <div ng-cloak ng-app="ReceiptTracker" ng-controller="ReceiptView as viewModel" ng-init="init(user)">
     <div class="row">
